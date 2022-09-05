@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">sopro-android-11-demo</string>
+    <string name="app_name">Bürgerbeteiligungs-Software</string>
     <string name="title_home">Home</string>
     <string name="title_search_api">Search</string>
     <string name="nav_bar_title_search">Search ISBN</string>
