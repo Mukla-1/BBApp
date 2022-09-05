@@ -1,5 +1,16 @@
 package de.cau.inf.se.sopro;
 
+import android.app.Activity;
+import android.content.Context;
+import android.content.SharedPreferences;
+
+
+
+import androidx.lifecycle.ViewModel;
+
+import javax.inject.Inject;
+
+import dagger.hilt.android.lifecycle.HiltViewModel;
 import de.cau.inf.se.sopro.model.CommentInfoItem;
 import de.cau.inf.se.sopro.model.GroupBaseInfoItem;
 import de.cau.inf.se.sopro.model.HeadingBaseInfoItem;
@@ -14,19 +25,27 @@ import de.cau.inf.se.sopro.network.RequestHandler;
  * This ViewModel handles all requests from the different activities and fragments.
  * It mainly forwards requests to the RequestHandler.
  */
-public class ApiViewModel {
+@HiltViewModel
+public class ApiViewModel extends ViewModel {
 
     private String username;
     private String currentURL;
 
+    private SharedPreferences sharedPreferences;
     private RequestHandler requestHandler;
 
     /**
      * Creates a new ViewModel to handle requests.
+     *
+     * @param activity the activity that creates the ViewModel, used for SharedPreferences
      */
-    public ApiViewModel() {
-        // TODO: read currentURL from file
-        requestHandler = RequestHandler.getInstance();
+    @Inject
+    public ApiViewModel(Activity activity, RequestHandler requestHandler) {
+        // set context to activities context
+        sharedPreferences = activity.getSharedPreferences("persistentPrefs", Context.MODE_PRIVATE);
+        // set the current URL to the one that is persistently saved or the default URL
+        currentURL = sharedPreferences.getString("baseURL", String.valueOf(R.string.defaultURL));
+        this.requestHandler = requestHandler;
     }
 
     /**
@@ -35,9 +54,11 @@ public class ApiViewModel {
      * @param url the URL to safe
      * @return {@code true} if the saving process worked, {@code false} else
      */
-    public Boolean saveURLpersistent(String url) {
-        // TODO
-        return null;
+    private void saveURLPersistent(String url) {
+        // create an editor to write data into sharedPreferences for persistent saving
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString("baseURL", url);
+        editor.apply();
     }
 
     /**
@@ -214,6 +235,6 @@ public class ApiViewModel {
 
     public void setCurrentURL(String newURL) {
         currentURL = newURL;
-        saveURLpersistent(newURL);
+        saveURLPersistent(newURL);
     }
 }

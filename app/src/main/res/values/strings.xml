@@ -14,4 +14,6 @@
     <string name="book_fragment_title_key">Title:</string>
     <string name="submit">submit</string>
     <string name="sync_with_backend">sync_with_backend</string>
+
+    <string name="defaultURL">"134.245.1.240"</string>
 </resources>
