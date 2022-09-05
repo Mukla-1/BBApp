@@ -17,14 +17,14 @@ import retrofit2.converter.moshi.MoshiConverterFactory;
 
 @Module
 @InstallIn(SingletonComponent.class)
-public class BookModule {
+public class WebConfiguration {
 
     private final String BASE_URL_LOCALHOST = "http://localhost:8080";
     private final String BASE_URL_LOOPBACK_FOR_EMULATOR = "http://10.0.2.2:8080";
 
     @Singleton
     @Provides
-    public BookService provideIsbnService() {
+    public WebService provideIsbnService() {
 
         OkHttpClient okHttpClient = new OkHttpClient().newBuilder().addInterceptor(new Interceptor() {
             @Override
@@ -41,7 +41,7 @@ public class BookModule {
 
         return new Retrofit.Builder().baseUrl(BASE_URL_LOOPBACK_FOR_EMULATOR).client(okHttpClient)
                 .addConverterFactory(MoshiConverterFactory.create()).build()
-                .create(BookService.class);
+                .create(WebService.class);
     }
 
 }
