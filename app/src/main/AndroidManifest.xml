@@ -17,8 +17,9 @@
         android:theme="@style/Theme.SoProAndroidDemo"
         tools:targetApi="31"
         android:name=".MainApplication">
+        <activity android:name=".MainActivity"></activity>
         <activity
-            android:name=".MainActivity"
+            android:name=".LoginActivity"
             android:exported="true"
             android:label="@string/app_name">
 
