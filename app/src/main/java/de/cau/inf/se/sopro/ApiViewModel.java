@@ -36,8 +36,7 @@ public class ApiViewModel extends ViewModel {
     private SharedPreferences sharedPreferences;
     private RequestHandler requestHandler;
 
-    // mutable LiveData objects that will be observed
-
+    // Mutable LiveData objects that will be observed
     private final MutableLiveData<Boolean> _userAddedSuccess = new MutableLiveData<>();
     private final MutableLiveData<Boolean> _loginValid = new MutableLiveData<>();
     private final MutableLiveData<List<ProjectBaseInfoItem>> _projects = new MutableLiveData<>();

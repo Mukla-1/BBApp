@@ -15,6 +15,7 @@ import okhttp3.Request;
 import retrofit2.Retrofit;
 import retrofit2.converter.moshi.MoshiConverterFactory;
 
+
 @Module
 @InstallIn(SingletonComponent.class)
 public class WebConfiguration {
@@ -43,5 +44,7 @@ public class WebConfiguration {
                 .addConverterFactory(MoshiConverterFactory.create()).build()
                 .create(WebService.class);
     }
+
+
 
 }

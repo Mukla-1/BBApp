@@ -7,7 +7,12 @@ import androidx.lifecycle.MutableLiveData;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.inject.Singleton;
 
+import dagger.Module;
+import dagger.Provides;
+import dagger.hilt.InstallIn;
+import dagger.hilt.components.SingletonComponent;
 import de.cau.inf.se.sopro.model.CommentInfoItem;
 import de.cau.inf.se.sopro.model.GroupBaseInfoItem;
 import de.cau.inf.se.sopro.model.HeadingBaseInfoItem;
@@ -22,22 +27,23 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+
 public class RequestHandler {
 
-    private final WebService isbnService;
+    private final WebService webService;
 
     @Inject
-    public RequestHandler(WebService isbnService) {
-        this.isbnService = isbnService;
+    public RequestHandler(WebService webService) {
+        this.webService = webService;
     }
 
 
-    public <T> void updateLiveData(MutableLiveData<T> books, Call call){
+    public <T> void updateLiveData(MutableLiveData<T> liveData, Call call){
         call.enqueue(new Callback<T>() {
             @Override
             public void onResponse(Call<T> call, Response<T> response) {
                 if (response.isSuccessful()) {
-                    books.setValue(response.body());
+                    liveData.setValue(response.body());
                 }
             }
 
