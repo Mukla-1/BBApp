@@ -21,7 +21,6 @@
         android:layout_width="199dp"
         android:layout_height="199dp"
         android:text="Alle Haltestellen"
-        app:layout_constraintVerticall_bias="0.5"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"

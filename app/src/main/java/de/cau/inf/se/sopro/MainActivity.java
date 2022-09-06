@@ -5,6 +5,7 @@ import android.view.View;
 import android.widget.Button;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.navigation.NavigationView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
@@ -21,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding binding;
     private NavController navController;
-    Button home,logout;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,10 +31,10 @@ public class MainActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
 
+        navController = Navigation.findNavController(this, R.id.nav_host_fragment_activity_main);
+        AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(navController.getGraph()).build();
+        NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
 
-        home = (Button) findViewById(R.id.button_Home);
-        logout = (Button) findViewById(R.id.button_Logout);
-        Button project = (Button) findViewById(R.id.button_project);
 
 
 
@@ -49,8 +50,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    //called when the project button is pressed
-    public void showProject(View view){
 
-    }
+
+
 }
