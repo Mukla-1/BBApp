@@ -25,7 +25,7 @@ public class WebConfiguration {
 
     @Singleton
     @Provides
-    public WebService provideIsbnService() {
+    public WebService provideWebService() {
 
         OkHttpClient okHttpClient = new OkHttpClient().newBuilder().addInterceptor(new Interceptor() {
             @Override

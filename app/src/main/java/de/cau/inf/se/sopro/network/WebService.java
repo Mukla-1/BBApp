@@ -38,7 +38,6 @@ public interface WebService {
     @POST("/app/addUser/{username}/{password}")
     public Call<Boolean> addUser(@Path("username") String username, @Path("password") String password);
 
-
     //ACHTUNG ACHTUNG MIT WEBGRUPPE KLÄREN OB GET WIRKLICH RICHTIG SEIN SOLL
     @GET("/app/validateLogin/{username}/{password}")
     public Call<Boolean> validateLogin(@Path("username") String username, @Path("password") String password);

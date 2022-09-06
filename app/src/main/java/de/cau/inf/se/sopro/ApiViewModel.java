@@ -57,14 +57,16 @@ public class ApiViewModel extends ViewModel {
     /**
      * Creates a new ViewModel to handle requests.
      *
-     * @param activity the activity that creates the ViewModel, used for SharedPreferences
      */
     @Inject
-    public ApiViewModel(Activity activity, RequestHandler requestHandler) {
+    public ApiViewModel(RequestHandler requestHandler) {
+        /*
+        An activity is NOT injected.
         // set context to activities context
         sharedPreferences = activity.getSharedPreferences("persistentPrefs", Context.MODE_PRIVATE);
         // set the current URL to the one that is persistently saved or the default URL
         currentURL = sharedPreferences.getString("baseURL", String.valueOf(R.string.defaultURL));
+        */
         this.requestHandler = requestHandler;
     }
 
