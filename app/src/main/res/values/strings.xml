@@ -1,19 +1,9 @@
 <resources>
-    <string name="app_name">sopro-android-11-demo</string>
-    <string name="title_home">Home</string>
-    <string name="title_search_api">Search</string>
-    <string name="nav_bar_title_search">Search ISBN</string>
-    <string name="nav_bar_title_database">Internal Database</string>
+    <string name="app_name">Bürgerbeteiligungssoftware</string>
 
-    <string name="isbn_search_name">isbn-search</string>
-    <string name="isbn_search_hint">ISBN</string>
-    <string name="default_title">Title</string>
-    <string name="default_author_name">AuthorName</string>
-    <string name="hint_authorname">Authorname</string>
-    <string name="book_fragment_author_key">Author:</string>
-    <string name="book_fragment_title_key">Title:</string>
+    <string name="default_project_name">Projektname</string>
+    <string name="project_list_title">Aktuelle Projekte</string>
     <string name="submit">submit</string>
-    <string name="sync_with_backend">sync_with_backend</string>
 
     <string name="defaultURL">"134.245.1.240"</string>
 </resources>
