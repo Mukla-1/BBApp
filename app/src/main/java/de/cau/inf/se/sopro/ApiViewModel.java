@@ -30,7 +30,8 @@ import de.cau.inf.se.sopro.network.RequestHandler;
 @HiltViewModel
 public class ApiViewModel extends ViewModel {
 
-    private String username;
+    // static so that each instance of ApiViewModel has the name saved once it is set via login
+    private static String username;
     private String currentURL;
 
     private SharedPreferences sharedPreferences;
@@ -73,7 +74,6 @@ public class ApiViewModel extends ViewModel {
      * Saves the given URL in the files of the Android app.
      *
      * @param url the URL to safe
-     * @return {@code true} if the saving process worked, {@code false} else
      */
     private void saveURLPersistent(String url) {
         // create an editor to write data into sharedPreferences for persistent saving
@@ -87,7 +87,8 @@ public class ApiViewModel extends ViewModel {
      *
      * @param username the desired username
      * @param password the password of the user
-     * @return {@code true} if the user was added, {@code false} if the username was already used.
+     * Instead of a return value, this sets {@link ApiViewModel#_userAddedSuccess} to
+     * {@code true} if the user was added or to {@code false} if the username was already used.
      */
     public void addUser(String username, String password) {
         requestHandler.updateLiveData(_userAddedSuccess, requestHandler.addUser(username, password));
@@ -98,103 +99,115 @@ public class ApiViewModel extends ViewModel {
      *
      * @param username the given username
      * @param password the given password
-     * @return {@code true} if the login data was correct,
+     * Instead of a return value, this sets {@link ApiViewModel#_loginValid} to
+     * {@code true} if the login data was correct or to
      * {@code false} if username and password didn't match.
      */
     public void validateLogin(String username, String password) {
+        // set username for future reference
+        ApiViewModel.username = username;
         requestHandler.updateLiveData(_loginValid, requestHandler.validateLogin(username, password));
     }
 
     /**
-     * Returns basic information about all existing projects to display in a list.
+     * Requests basic information about all existing projects to display in a list.
      *
-     * @return an array of {@link ProjectBaseInfoItem}s, one for each existing project
+     * Instead of a return value, this sets {@link ApiViewModel#_projects} to
+     * a list of {@link ProjectBaseInfoItem}s, one for each existing project
      */
     public void getProjects() {
         requestHandler.updateLiveData(_projects, requestHandler.getProjects());
     }
 
     /**
-     * Returns the information needed to build a phase overview for a project.
+     * Requests the information needed to build a phase overview for a project.
      *
      * @param projectID the ID of the project in the database
-     * @return a {@link PhaseInfoItem} for the project
+     * Instead of a return value, this sets {@link ApiViewModel#_phaseInfo} to
+     * a {@link PhaseInfoItem} for the project
      */
     public void getPhaseInfo(Long projectID) {
         requestHandler.updateLiveData(_phaseInfo, requestHandler.getPhaseInfo(projectID));
     }
 
     /**
-     * Returns information for the overview page of a project.
+     * Requests information for the overview page of a project.
      *
      * @param projectID the ID of the project in the database
-     * @return a {@link ProjectInfoItem} for the project
+     * Instead of a return value, this sets {@link ApiViewModel#_projectInfo} to
+     * a {@link ProjectInfoItem} for the project
      */
     public void getProjectInfo(Long projectID) {
         requestHandler.updateLiveData(_projectInfo, requestHandler.getProjectInfo(projectID));
     }
 
     /**
-     * Returns all groups of a project.
+     * Requests all groups of a project.
      *
      * @param projectID the ID of the project in the database
-     * @return an array of {@link GroupBaseInfoItem}s, one for each group of the project
+     * Instead of a return value, this sets {@link ApiViewModel#_groups} to
+     * a list of {@link GroupBaseInfoItem}s, one for each group of the project
      */
     public void getGroups(Long projectID) {
         requestHandler.updateLiveData(_groups, requestHandler.getGroups(projectID));
     }
 
     /**
-     * Returns all headings of a group.
+     * Requests all headings of a group.
      *
      * @param groupID the ID of the group in the database
-     * @return an array of {@link HeadingBaseInfoItem}s, one for each heading of the group
+     * Instead of a return value, this sets {@link ApiViewModel#_headings} to
+     * a list of {@link HeadingBaseInfoItem}s, one for each heading of the group
      */
     public void getHeadings(Long groupID) {
         requestHandler.updateLiveData(_headings, requestHandler.getHeadings(groupID));
     }
 
     /**
-     * Returns all subprojects of a heading.
+     * Requests all subprojects of a heading.
      *
      * @param headingID the ID of the heading in the database
-     * @return an array of {@link SubprojectBaseInfoItem}s, one for each subproject of the heading
+     * Instead of a return value, this sets {@link ApiViewModel#_subprojects} to
+     * a list of {@link SubprojectBaseInfoItem}s, one for each subproject of the heading
      */
     public void getSubprojects(Long headingID) {
         requestHandler.updateLiveData(_subprojects, requestHandler.getSubprojects(headingID));
     }
 
     /**
-     * Returns information for the overview page of a subproject.
+     * Requests information for the overview page of a subproject.
      * In the forwarded method call, the username is also propagated to potentially allow for
      * "already voted" checks in the future.
      *
      * @param subprojectID the ID of the subproject in the database
-     * @return a {@link SubprojectInfoItem} for the subproject
+     * Instead of a return value, this sets {@link ApiViewModel#_subprojectInfo} to
+     * a {@link SubprojectInfoItem} for the subproject
      */
     public void getSubprojectInfo(Long subprojectID) {
         requestHandler.updateLiveData(_subprojectInfo, requestHandler.getSubprojectInfo(subprojectID, username));
     }
 
     /**
-     * Returns information about the comments on a subproject.
+     * Requests information about the comments on a subproject.
      * In the forwarded method call, the username is also propagated to check if the user has voted
      * for any of these comments before.
      *
      * @param subprojectID the ID of the subproject in the database
-     * @return an array of {@link CommentInfoItem}s, one for each comment on the subproject
+     * Instead of a return value, this sets {@link ApiViewModel#_comments} to
+     * a list of {@link CommentInfoItem}s, one for each comment on the subproject
      */
     public void getComments(Long subprojectID) {
         requestHandler.updateLiveData(_comments, requestHandler.getComments(subprojectID, username));
     }
 
     /**
-     * Returns information about the subcomments on a comment.
+     * Requests information about the subcomments on a comment.
      * In the forwarded method call, the username is also propagated to check if the user has voted
      * for any of these subcomments before.
      *
      * @param commentID the ID of the main comment in the database
-     * @return an array of {@link CommentInfoItem}s, one for each subcomment on the comment
+     * Instead of a return value, this sets {@link ApiViewModel#_subcomments} to
+     * a list of {@link CommentInfoItem}s, one for each subcomment on the comment
      */
     public void getSubcomments(Long commentID) {
         requestHandler.updateLiveData(_subcomments, requestHandler.getSubcomments(commentID, username));
@@ -206,7 +219,8 @@ public class ApiViewModel extends ViewModel {
      * user in the database to not allow multi-votes.
      *
      * @param subprojectID the ID of the subproject in the database
-     * @return {@code true} if the voting process worked, {@code false} if there was an error
+     * Instead of a return value, this sets {@link ApiViewModel#_subprojectVoteSuccess} to
+     * {@code true} if the voting process worked or to {@code false} if there was an error
      */
     public void voteSubproject(Long subprojectID) {
         requestHandler.updateLiveData(_subprojectVoteSuccess, requestHandler.voteSubproject(subprojectID, username));
@@ -221,7 +235,8 @@ public class ApiViewModel extends ViewModel {
      * @param commentID the ID of the commented comment or {@code null}
      *                  if the subproject is commented on directly
      * @param content the content of the comment
-     * @return {@code true} if the commenting process worked, {@code false} if there was an error
+     * Instead of a return value, this sets {@link ApiViewModel#_commentCreationSuccess} to
+     * {@code true} if the commenting process worked, {@code false} if there was an error
      */
     public void createComment(Long subprojectID, Long commentID, String content) {
         requestHandler.updateLiveData(_commentCreationSuccess, requestHandler.createComment(subprojectID, commentID, content, username));
@@ -234,7 +249,8 @@ public class ApiViewModel extends ViewModel {
      *
      * @param commentID the ID of the comment in the database
      * @param upvote {@code true} if the vote is an upvote, {@code false} if it is a downvote
-     * @return {@code true} if the voting process worked, {@code false} if there was an error
+     * Instead of a return value, this sets {@link ApiViewModel#_commentVoteSuccess} to
+     * {@code true} if the voting process worked, {@code false} if there was an error
      */
     public void voteComment(Long commentID, Boolean upvote) {
         requestHandler.updateLiveData(_commentVoteSuccess, requestHandler.voteComment(commentID, upvote, username));
@@ -246,8 +262,8 @@ public class ApiViewModel extends ViewModel {
         return username;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public static void setUsername(String username) {
+        ApiViewModel.username = username;
     }
 
     public String getCurrentURL() {
