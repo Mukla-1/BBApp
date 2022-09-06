@@ -24,21 +24,8 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        //binding =   ActivityMainBinding.inflate(getLayoutInflater());
+        // Inflate the Correct xml File
         setContentView(R.layout.activity_login);
-
-
-        //BottomNavigationView navView = findViewById(R.id.nav_view);
-
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
-        // AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
-        //       R.id.navigation_home, R.id.navigation_search, R.id.navigation_database)
-        //      .build();
-
-        //navController = Navigation.findNavController(this, R.id.nav_host_fragment_activity_login);
-        //NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
-        //NavigationUI.setupWithNavController(binding.navView, navController);
     }
 
     @Override
@@ -46,5 +33,8 @@ public class LoginActivity extends AppCompatActivity {
         return navController.navigateUp() || super.onSupportNavigateUp();
     }
 
-    //public ApiViewModel getApi(){}
+    // Used by Fragments to access a/the ApiViewModel, depends on what Mads did in his Method
+    public ApiViewModel getApi(){
+        return new ApiViewModel();
+    }
 }

@@ -13,15 +13,15 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
 
+import de.cau.inf.se.sopro.LoginActivity;
 import de.cau.inf.se.sopro.R;
-import de.cau.inf.se.sopro.databinding.FragmentHomeBinding;
 
 public class SettingsFragment extends Fragment {
 
-    private FragmentHomeBinding binding;
+    //private FragmentHomeBinding binding;
     private NavController navController;
 
-    Button settings_button;
+    Button button_settings;
     Button button_apply;
     EditText url;
     TextView success;
@@ -45,21 +45,25 @@ public class SettingsFragment extends Fragment {
 
 
         // Set up References and Functionality
-        settings_button = view2.findViewById(R.id.button_return);
-        settings_button.setOnClickListener(view -> onSettingsButtonClick());
+        button_settings = view2.findViewById(R.id.button_return);
+        button_settings.setOnClickListener(view -> onSettingsButtonClick());
         button_apply = view2.findViewById(R.id.button_apply);
         button_apply.setOnClickListener(view -> onApplyButtonClick());
         url = view2.findViewById(R.id.url);
         success = view2.findViewById(R.id.success_text);
 
         // Get old URL from the API thingy
-        //url.setText(getActivity().getApi().getCurrentURL());
+        url.setText(((LoginActivity)getActivity()).getApi().getCurrentURL());
+
         return view2;
     }
 
     protected void onSettingsButtonClick(){
+        // Switch to the Login Screen
         Bundle payload = new Bundle();
         this.navController.navigate(R.id.action_settings_to_login, payload);
+
+
     }
 
     protected void onApplyButtonClick(){
@@ -70,11 +74,14 @@ public class SettingsFragment extends Fragment {
             return;
         }
 
-        //ApiViewModel api = getActivity().getApi();
-        //if(api.setCurrentURL(newRL)){}
-        // Display Success or Failure message
-        success.setText("Applied new URL");
-        success.setText("Failed to apply new URL");
+        ApiViewModel api = ((LoginActivity)getActivity()).getApi();
+        if(api.setCurrentURL(newRL)){
+            // Display Success or Failure message
+            success.setText("Applied new URL");
+        }else{
+            success.setText("Failed to apply new URL");
+        }
+
     }
 
 

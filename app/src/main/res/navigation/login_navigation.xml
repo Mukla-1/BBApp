@@ -9,7 +9,7 @@
         android:id="@+id/login_home"
         android:name="de.cau.inf.se.sopro.ui.home.LoginFragment"
         android:label="@string/title_home"
-        tools:layout="@layout/login_home">
+        tools:layout="@layout/fragment_login">
         <action
             android:id="@+id/action_login_to_settings"
             app:destination="@id/fragment_settings" />
