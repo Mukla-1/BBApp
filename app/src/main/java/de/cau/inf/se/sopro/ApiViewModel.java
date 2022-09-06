@@ -5,8 +5,10 @@ import android.content.Context;
 import android.content.SharedPreferences;
 
 
-
+import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
+
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -33,6 +35,25 @@ public class ApiViewModel extends ViewModel {
 
     private SharedPreferences sharedPreferences;
     private RequestHandler requestHandler;
+
+    // mutable LiveData objects that will be observed
+
+    private final MutableLiveData<Boolean> _userAddedSuccess = new MutableLiveData<>();
+    private final MutableLiveData<Boolean> _loginValid = new MutableLiveData<>();
+    private final MutableLiveData<List<ProjectBaseInfoItem>> _projects = new MutableLiveData<>();
+    private final MutableLiveData<PhaseInfoItem> _phaseInfo = new MutableLiveData<>();
+    private final MutableLiveData<ProjectInfoItem> _projectInfo = new MutableLiveData<>();
+    private final MutableLiveData<List<GroupBaseInfoItem>> _groups = new MutableLiveData<>();
+    private final MutableLiveData<List<HeadingBaseInfoItem>> _headings = new MutableLiveData<>();
+    private final MutableLiveData<List<SubprojectBaseInfoItem>> _subprojects = new MutableLiveData<>();
+    private final MutableLiveData<SubprojectInfoItem> _subprojectInfo = new MutableLiveData<>();
+    private final MutableLiveData<List<CommentInfoItem>> _comments = new MutableLiveData<>();
+    private final MutableLiveData<List<CommentInfoItem>> _subcomments = new MutableLiveData<>();
+    private final MutableLiveData<Boolean> _subprojectVoteSuccess = new MutableLiveData<>();
+    private final MutableLiveData<Boolean> _commentCreationSuccess = new MutableLiveData<>();
+    private final MutableLiveData<Boolean> _commentVoteSuccess = new MutableLiveData<>();
+
+
 
     /**
      * Creates a new ViewModel to handle requests.
@@ -68,8 +89,8 @@ public class ApiViewModel extends ViewModel {
      * @param password the password of the user
      * @return {@code true} if the user was added, {@code false} if the username was already used.
      */
-    public Boolean addUser(String username, String password) {
-        return requestHandler.addUser(username, password);
+    public void addUser(String username, String password) {
+        requestHandler.updateLiveData(_userAddedSuccess, requestHandler.addUser(username, password));
     }
 
     /**
@@ -80,8 +101,8 @@ public class ApiViewModel extends ViewModel {
      * @return {@code true} if the login data was correct,
      * {@code false} if username and password didn't match.
      */
-    public Boolean validateLogin(String username, String password) {
-        return requestHandler.validateLogin(username, password);
+    public void validateLogin(String username, String password) {
+        requestHandler.updateLiveData(_loginValid, requestHandler.validateLogin(username, password));
     }
 
     /**
@@ -89,8 +110,8 @@ public class ApiViewModel extends ViewModel {
      *
      * @return an array of {@link ProjectBaseInfoItem}s, one for each existing project
      */
-    public ProjectBaseInfoItem[] getProjects() {
-        return requestHandler.getProjects();
+    public void getProjects() {
+        requestHandler.updateLiveData(_projects, requestHandler.getProjects());
     }
 
     /**
@@ -99,8 +120,8 @@ public class ApiViewModel extends ViewModel {
      * @param projectID the ID of the project in the database
      * @return a {@link PhaseInfoItem} for the project
      */
-    public PhaseInfoItem getPhaseInfo(Long projectID) {
-        return requestHandler.getPhaseInfo(projectID);
+    public void getPhaseInfo(Long projectID) {
+        requestHandler.updateLiveData(_phaseInfo, requestHandler.getPhaseInfo(projectID));
     }
 
     /**
@@ -109,8 +130,8 @@ public class ApiViewModel extends ViewModel {
      * @param projectID the ID of the project in the database
      * @return a {@link ProjectInfoItem} for the project
      */
-    public ProjectInfoItem getProjectInfo(Long projectID) {
-        return requestHandler.getProjectInfo(projectID);
+    public void getProjectInfo(Long projectID) {
+        requestHandler.updateLiveData(_projectInfo, requestHandler.getProjectInfo(projectID));
     }
 
     /**
@@ -119,8 +140,8 @@ public class ApiViewModel extends ViewModel {
      * @param projectID the ID of the project in the database
      * @return an array of {@link GroupBaseInfoItem}s, one for each group of the project
      */
-    public GroupBaseInfoItem[] getGroups(Long projectID) {
-        return requestHandler.getGroups(projectID);
+    public void getGroups(Long projectID) {
+        requestHandler.updateLiveData(_groups, requestHandler.getGroups(projectID));
     }
 
     /**
@@ -129,8 +150,8 @@ public class ApiViewModel extends ViewModel {
      * @param groupID the ID of the group in the database
      * @return an array of {@link HeadingBaseInfoItem}s, one for each heading of the group
      */
-    public HeadingBaseInfoItem[] getHeadings(Long groupID) {
-        return requestHandler.getHeadings(groupID);
+    public void getHeadings(Long groupID) {
+        requestHandler.updateLiveData(_headings, requestHandler.getHeadings(groupID));
     }
 
     /**
@@ -139,8 +160,8 @@ public class ApiViewModel extends ViewModel {
      * @param headingID the ID of the heading in the database
      * @return an array of {@link SubprojectBaseInfoItem}s, one for each subproject of the heading
      */
-    public SubprojectBaseInfoItem[] getSubprojects(Long headingID) {
-        return requestHandler.getSubprojects(headingID);
+    public void getSubprojects(Long headingID) {
+        requestHandler.updateLiveData(_subprojects, requestHandler.getSubprojects(headingID));
     }
 
     /**
@@ -151,8 +172,8 @@ public class ApiViewModel extends ViewModel {
      * @param subprojectID the ID of the subproject in the database
      * @return a {@link SubprojectInfoItem} for the subproject
      */
-    public SubprojectInfoItem getSubprojectInfo(Long subprojectID) {
-        return requestHandler.getSubprojectInfo(subprojectID, username);
+    public void getSubprojectInfo(Long subprojectID) {
+        requestHandler.updateLiveData(_subprojectInfo, requestHandler.getSubprojectInfo(subprojectID, username));
     }
 
     /**
@@ -163,8 +184,8 @@ public class ApiViewModel extends ViewModel {
      * @param subprojectID the ID of the subproject in the database
      * @return an array of {@link CommentInfoItem}s, one for each comment on the subproject
      */
-    public CommentInfoItem[] getComments(Long subprojectID) {
-        return requestHandler.getComments(subprojectID, username);
+    public void getComments(Long subprojectID) {
+        requestHandler.updateLiveData(_comments, requestHandler.getComments(subprojectID, username));
     }
 
     /**
@@ -175,8 +196,8 @@ public class ApiViewModel extends ViewModel {
      * @param commentID the ID of the main comment in the database
      * @return an array of {@link CommentInfoItem}s, one for each subcomment on the comment
      */
-    public CommentInfoItem[] getSubcomments(Long commentID) {
-        return requestHandler.getSubcomments(commentID, username);
+    public void getSubcomments(Long commentID) {
+        requestHandler.updateLiveData(_subcomments, requestHandler.getSubcomments(commentID, username));
     }
 
     /**
@@ -187,8 +208,8 @@ public class ApiViewModel extends ViewModel {
      * @param subprojectID the ID of the subproject in the database
      * @return {@code true} if the voting process worked, {@code false} if there was an error
      */
-    public Boolean voteSubproject(Long subprojectID) {
-        return requestHandler.voteSubproject(subprojectID, username);
+    public void voteSubproject(Long subprojectID) {
+        requestHandler.updateLiveData(_subprojectVoteSuccess, requestHandler.voteSubproject(subprojectID, username));
     }
 
     /**
@@ -202,8 +223,8 @@ public class ApiViewModel extends ViewModel {
      * @param content the content of the comment
      * @return {@code true} if the commenting process worked, {@code false} if there was an error
      */
-    public Boolean createComment(Long subprojectID, Long commentID, String content) {
-        return requestHandler.createComment(subprojectID, commentID, content, username);
+    public void createComment(Long subprojectID, Long commentID, String content) {
+        requestHandler.updateLiveData(_commentCreationSuccess, requestHandler.createComment(subprojectID, commentID, content, username));
     }
 
     /**
@@ -215,8 +236,8 @@ public class ApiViewModel extends ViewModel {
      * @param upvote {@code true} if the vote is an upvote, {@code false} if it is a downvote
      * @return {@code true} if the voting process worked, {@code false} if there was an error
      */
-    public Boolean voteComment(Long commentID, Boolean upvote) {
-        return requestHandler.voteComment(commentID, upvote, username);
+    public void voteComment(Long commentID, Boolean upvote) {
+        requestHandler.updateLiveData(_commentVoteSuccess, requestHandler.voteComment(commentID, upvote, username));
     }
 
     // Getter and Setter
@@ -235,6 +256,63 @@ public class ApiViewModel extends ViewModel {
 
     public void setCurrentURL(String newURL) {
         currentURL = newURL;
+        // also save persistent
         saveURLPersistent(newURL);
+    }
+
+    public MutableLiveData<Boolean> get_userAddedSuccess() {
+        return _userAddedSuccess;
+    }
+
+    public MutableLiveData<Boolean> get_loginValid() {
+        return _loginValid;
+    }
+
+    public MutableLiveData<List<ProjectBaseInfoItem>> get_projects() {
+        return _projects;
+    }
+
+    public MutableLiveData<PhaseInfoItem> get_phaseInfo() {
+        return _phaseInfo;
+    }
+
+    public MutableLiveData<ProjectInfoItem> get_projectInfo() {
+        return _projectInfo;
+    }
+
+    public MutableLiveData<List<GroupBaseInfoItem>> get_groups() {
+        return _groups;
+    }
+
+    public MutableLiveData<List<HeadingBaseInfoItem>> get_headings() {
+        return _headings;
+    }
+
+    public MutableLiveData<List<SubprojectBaseInfoItem>> get_subprojects() {
+        return _subprojects;
+    }
+
+    public MutableLiveData<SubprojectInfoItem> get_subprojectInfo() {
+        return _subprojectInfo;
+    }
+
+    public MutableLiveData<List<CommentInfoItem>> get_comments() {
+        return _comments;
+    }
+
+    public MutableLiveData<List<CommentInfoItem>> get_subcomments() {
+        return _subcomments;
+    }
+
+    public MutableLiveData<Boolean> get_subprojectVoteSuccess() {
+        return _subprojectVoteSuccess;
+    }
+
+    public MutableLiveData<Boolean> get_commentCreationSuccess() {
+        return _commentCreationSuccess;
+    }
+
+    public MutableLiveData<Boolean> get_commentVoteSuccess() {
+        return _commentVoteSuccess;
     }
 }
