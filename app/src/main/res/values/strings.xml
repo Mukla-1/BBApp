@@ -4,6 +4,9 @@
     <string name="default_project_name">Projektname</string>
     <string name="project_list_title">Aktuelle Projekte</string>
     <string name="submit">submit</string>
-
+    <string name="default_subproject_name">Subprojekt heehee</string>
+    <string name="default_subproject_description">Tolles Projekt!!</string>
+    <string name="default_subproject_label">Unterprojekt</string>
+    <string name="vote">Vote jetzt!</string>
     <string name="defaultURL">"134.245.1.240"</string>
 </resources>
