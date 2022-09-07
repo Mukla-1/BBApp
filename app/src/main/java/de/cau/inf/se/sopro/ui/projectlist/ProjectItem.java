@@ -10,15 +10,12 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import de.cau.inf.se.sopro.R;
-import de.cau.inf.se.sopro.databinding.FragmentProjectBinding;
 
 /**
  * Fragment shown in {@link ProjectListFragment}. For each project found in the database,
  * one of these ProjectFragments will be shown in the list.
  */
-public class ProjectFragment extends Fragment {
-
-    private FragmentProjectBinding binding;
+public class ProjectItem extends Fragment {
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
@@ -26,6 +23,6 @@ public class ProjectFragment extends Fragment {
         super.onCreate(savedInstanceState);
 
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_project, container, false);
+        return inflater.inflate(R.layout.project_item, container, false);
     }
 }
