@@ -77,6 +77,13 @@ dependencies {
     // Json
     implementation "com.squareup.retrofit2:converter-moshi:2.9.0"
 
+    // osmdroid for Displaying Open-Street-Maps
+    implementation 'org.osmdroid:osmdroid-android:6.1.14'
+    implementation 'org.osmdroid:osmdroid-wms:6.1.14'
+    implementation 'org.osmdroid:osmdroid-mapsforge:6.1.14'
+    implementation 'org.osmdroid:osmdroid-geopackage:6.1.14'
+
+
     testImplementation 'junit:junit:4.13.2'
 
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'

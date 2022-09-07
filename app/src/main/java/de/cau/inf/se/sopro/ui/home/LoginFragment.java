@@ -81,13 +81,15 @@ public class LoginFragment extends Fragment {
             text_hint.setText("Name und Passwort dürfen nicht leer sein");
             return;
         }
-        // Ask ApiVM if the Login is valid
+        /*
+         //Ask ApiVM if the Login is valid
         ApiViewModel api = ((LoginActivity)getActivity()).getApi();
         if (api.validateLogin(n,p)){
             switchActivity(n,p);
         }else{
             text_hint.setText("Es geschah ein Fehlschlag. Bitte versuchen sie es erneut ");
         }
+        */
     }
 
     protected void onRegisterButtonClick(){
@@ -100,13 +102,14 @@ public class LoginFragment extends Fragment {
             return;
         }
         // Ask the ApiVM if the Login is valid
+        /*
         ApiViewModel api = ((LoginActivity)getActivity()).getApi();
         if (api.validateLogin(n,p)){
             switchActivity(n,p);
         }else{
             text_hint.setText("Es geschah ein Fehlschlag. Bitte versuchen sie es erneut ");
         }
-
+        */
     }
     // Start the MainActivity and send it the Userdata
     private void switchActivity(String name,String password){
@@ -122,6 +125,6 @@ public class LoginFragment extends Fragment {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        binding = null;
+        //binding = null;
     }
 }

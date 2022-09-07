@@ -1,6 +1,7 @@
 package de.cau.inf.se.sopro;
 
 import android.os.Bundle;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
@@ -20,12 +21,15 @@ public class LoginActivity extends AppCompatActivity {
     private ActivityMainBinding binding;
     private NavController navController;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         // Inflate the Correct xml File
         setContentView(R.layout.activity_login);
+
+
     }
 
     @Override
@@ -34,7 +38,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     // Used by Fragments to access a/the ApiViewModel, depends on what Mads did in his Method
-    public ApiViewModel getApi(){
-        return new ApiViewModel();
-    }
+    //public ApiViewModel getApi(){
+    //   return new ApiViewModel();
+    //}
 }

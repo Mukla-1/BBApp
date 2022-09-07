@@ -53,7 +53,7 @@ public class SettingsFragment extends Fragment {
         success = view2.findViewById(R.id.success_text);
 
         // Get old URL from the API thingy
-        url.setText(((LoginActivity)getActivity()).getApi().getCurrentURL());
+        //url.setText(((LoginActivity)getActivity()).getApi().getCurrentURL());
 
         return view2;
     }
@@ -73,7 +73,7 @@ public class SettingsFragment extends Fragment {
             success.setText("URL darf nicht leer sein!");
             return;
         }
-
+        /*
         ApiViewModel api = ((LoginActivity)getActivity()).getApi();
         if(api.setCurrentURL(newRL)){
             // Display Success or Failure message
@@ -81,7 +81,7 @@ public class SettingsFragment extends Fragment {
         }else{
             success.setText("Failed to apply new URL");
         }
-
+        */
     }
 
 
@@ -89,6 +89,6 @@ public class SettingsFragment extends Fragment {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        binding = null;
+        //binding = null;
     }
 }
