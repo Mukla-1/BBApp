@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/login_navigation"
+    app:startDestination="@+id/login_home">
+
+    <fragment
+        android:id="@+id/login_home"
+        android:name="de.cau.inf.se.sopro.ui.home.LoginFragment"
+        android:label="@string/title_home"
+        tools:layout="@layout/fragment_login">
+        <action
+            android:id="@+id/action_login_to_settings"
+            app:destination="@id/fragment_settings" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragment_settings"
+        android:name="de.cau.inf.se.sopro.ui.home.SettingsFragment"
+        tools:layout="@layout/fragment_settings">
+        <action
+            android:id="@+id/action_settings_to_login"
+            app:destination="@id/login_home" />
+    </fragment>
+
+
+
+
+
+
+
+</navigation>

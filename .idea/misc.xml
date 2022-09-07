@@ -3,6 +3,14 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Chrissi/Desktop/buergerbeteiligungs-app/app/src/main/res/layout/activity_login.xml" value="0.17074275362318841" />
+        <entry key="..\:/Users/Chrissi/Desktop/buergerbeteiligungs-app/app/src/main/res/layout/activity_main.xml" value="0.17074275362318841" />
+        <entry key="..\:/Users/Chrissi/Desktop/buergerbeteiligungs-app/app/src/main/res/layout/fragment_home.xml" value="0.17074275362318841" />
+        <entry key="..\:/Users/Chrissi/Desktop/buergerbeteiligungs-app/app/src/main/res/layout/fragment_map.xml" value="0.22447916666666667" />
+        <entry key="..\:/Users/Chrissi/Desktop/buergerbeteiligungs-app/app/src/main/res/layout/fragment_phases.xml" value="0.22447916666666667" />
+        <entry key="..\:/Users/Chrissi/Desktop/buergerbeteiligungs-app/app/src/main/res/layout/fragment_settings.xml" value="0.21" />
+        <entry key="..\:/Users/Chrissi/Desktop/buergerbeteiligungs-app/app/src/main/res/layout/login_home.xml" value="0.33" />
+        <entry key="..\:/Users/Chrissi/Desktop/buergerbeteiligungs-app/app/src/main/res/menu/bottom_nav_menu.xml" value="0.22447916666666667" />
         <entry key="..\:/Users/madsn/AndroidStudioProjects/buergerbeteiligungs-app/app/src/main/res/layout/activity_main.xml" value="0.18802083333333333" />
         <entry key="..\:/Users/madsn/AndroidStudioProjects/buergerbeteiligungs-app/app/src/main/res/layout/fragment_database.xml" value="0.358695652173913" />
         <entry key="..\:/Users/madsn/AndroidStudioProjects/buergerbeteiligungs-app/app/src/main/res/layout/fragment_group_list.xml" value="0.358695652173913" />

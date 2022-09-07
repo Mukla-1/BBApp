@@ -7,29 +7,9 @@
 
     <fragment
         android:id="@+id/navigation_home"
-        android:name="de.cau.inf.se.sopro.ui.home.HomeFragment"
+        android:name="de.cau.inf.se.sopro.ui.home.LoginFragment"
         android:label="@string/title_home"
         tools:layout="@layout/fragment_home" />
 
-    <fragment
-        android:id="@+id/navigation_search"
-        android:name="de.cau.inf.se.sopro.ui.search.ApiSearchFragment"
-        android:label="@string/title_search_api"
-        tools:layout="@layout/fragment_api_search" />
 
-    <fragment
-        android:id="@+id/navigation_database"
-        android:name="de.cau.inf.se.sopro.ui.database.DatabaseFragment"
-        android:label="@string/nav_bar_title_database"
-        tools:layout="@layout/fragment_database" >
-        <action
-            android:id="@+id/action_navigation_database_to_navigation_book"
-            app:destination="@id/navigation_book" />
-    </fragment>
-
-    <fragment
-        android:id="@+id/navigation_book"
-        android:name="de.cau.inf.se.sopro.ui.database.BookFragment"
-        android:label="test"
-        tools:layout="@layout/fragment_book" />
 </navigation>
