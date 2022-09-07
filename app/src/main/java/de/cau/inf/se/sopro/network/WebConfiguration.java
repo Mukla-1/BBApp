@@ -15,6 +15,7 @@ import okhttp3.Request;
 import retrofit2.Retrofit;
 import retrofit2.converter.moshi.MoshiConverterFactory;
 
+
 @Module
 @InstallIn(SingletonComponent.class)
 public class WebConfiguration {
@@ -24,7 +25,7 @@ public class WebConfiguration {
 
     @Singleton
     @Provides
-    public WebService provideIsbnService() {
+    public WebService provideWebService() {
 
         OkHttpClient okHttpClient = new OkHttpClient().newBuilder().addInterceptor(new Interceptor() {
             @Override
@@ -43,5 +44,7 @@ public class WebConfiguration {
                 .addConverterFactory(MoshiConverterFactory.create()).build()
                 .create(WebService.class);
     }
+
+
 
 }
