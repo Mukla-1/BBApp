@@ -14,7 +14,7 @@ import androidx.navigation.ui.NavigationUI;
 import dagger.hilt.android.AndroidEntryPoint;
 import de.cau.inf.se.sopro.databinding.ActivityMainBinding;
 
-@AndroidEntryPoint
+
 public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding binding;
