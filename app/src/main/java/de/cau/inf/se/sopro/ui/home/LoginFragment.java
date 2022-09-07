@@ -11,13 +11,17 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
 
+import dagger.hilt.android.AndroidEntryPoint;
+import de.cau.inf.se.sopro.ApiViewModel;
 import de.cau.inf.se.sopro.LoginActivity;
 import de.cau.inf.se.sopro.MainActivity;
 import de.cau.inf.se.sopro.R;
 
+@AndroidEntryPoint
 public class LoginFragment extends Fragment {
 
     //private FragmentHomeBinding binding;
@@ -31,6 +35,11 @@ public class LoginFragment extends Fragment {
     TextView text_hint;
     Button button_settings;
 
+    private String un = "";
+    private String pw = "";
+
+
+    private ApiViewModel  dashboardViewModel;
 
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -38,16 +47,16 @@ public class LoginFragment extends Fragment {
         // I used this way of inflating because it actually works
         View view2 = inflater.inflate(R.layout.fragment_login,container,false);
 
-        //binding = FragmentHomeBinding.inflate(inflater, container, false);
-        //View root = binding.getRoot();
+        // Api stuff setup
+        dashboardViewModel = new ViewModelProvider(this).get(ApiViewModel.class);
+        dashboardViewModel.get_loginValid().observe(getViewLifecycleOwner(),b -> onLoginUpdate(b));
+        dashboardViewModel.get_userAddedSuccess().observe(getViewLifecycleOwner(),b -> onRegisterUpdate(b));
 
 
         // Connect to the Nav Controller
         NavHostFragment navHostFragment =
                 (NavHostFragment) getActivity().getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment_activity_login);
         this.navController = navHostFragment.getNavController();
-
-
 
 
         // Connecting to Elements
@@ -61,9 +70,51 @@ public class LoginFragment extends Fragment {
         text_password = view2.findViewById(R.id.password);
         text_hint = view2.findViewById(R.id.output);
 
-
-
         return view2;
+    }
+
+
+    public void onLoginUpdate(Boolean success){
+        if(success){
+            switchActivity(un,pw);
+        }else{
+            text_hint.setText("Es geschah ein Fehlschlag. Bitte versuchen sie es erneut ");
+        }
+    }
+
+    public void onRegisterUpdate(Boolean success){
+        if(success){
+            switchActivity(un,pw);
+        }else{
+            text_hint.setText("Es geschah ein Fehlschlag. Bitte versuchen sie es erneut ");
+        }
+    }
+
+
+
+    protected  void onLoginButtonClick(){
+        // Get User Information
+        un = text_username.getText().toString();
+        pw = text_password.getText().toString();
+        // Check for Empty
+        if(un.isEmpty() || pw.isEmpty()){
+            text_hint.setText("Name und Passwort dürfen nicht leer sein");
+            return;
+        }
+        dashboardViewModel.validateLogin(un,pw);
+
+    }
+
+    protected void onRegisterButtonClick(){
+        // Get User Information
+        un = text_username.getText().toString();
+        pw = text_password.getText().toString();
+        // Check for Empty
+        if(un.isEmpty() || pw.isEmpty()){
+            text_hint.setText("Name und Passwort dürfen nicht leer sein");
+            return;
+        }
+        dashboardViewModel.addUser(un,pw);
     }
 
     // Switch to the Settings screen
@@ -72,45 +123,6 @@ public class LoginFragment extends Fragment {
         this.navController.navigate(R.id.action_login_to_settings, payload);
     }
 
-    protected  void onLoginButtonClick(){
-        // Get User Information
-        String n = text_username.getText().toString();
-        String p = text_password.getText().toString();
-        // Check for Empty
-        if(n.isEmpty() || p.isEmpty()){
-            text_hint.setText("Name und Passwort dürfen nicht leer sein");
-            return;
-        }
-        /*
-         //Ask ApiVM if the Login is valid
-        ApiViewModel api = ((LoginActivity)getActivity()).getApi();
-        if (api.validateLogin(n,p)){
-            switchActivity(n,p);
-        }else{
-            text_hint.setText("Es geschah ein Fehlschlag. Bitte versuchen sie es erneut ");
-        }
-        */
-    }
-
-    protected void onRegisterButtonClick(){
-        // Get User Information
-        String n = text_username.getText().toString();
-        String p = text_password.getText().toString();
-        // Check for Empty
-        if(n.isEmpty() || p.isEmpty()){
-            text_hint.setText("Name und Passwort dürfen nicht leer sein");
-            return;
-        }
-        // Ask the ApiVM if the Login is valid
-        /*
-        ApiViewModel api = ((LoginActivity)getActivity()).getApi();
-        if (api.validateLogin(n,p)){
-            switchActivity(n,p);
-        }else{
-            text_hint.setText("Es geschah ein Fehlschlag. Bitte versuchen sie es erneut ");
-        }
-        */
-    }
     // Start the MainActivity and send it the Userdata
     private void switchActivity(String name,String password){
         Intent intent = new Intent(getActivity(), MainActivity.class);

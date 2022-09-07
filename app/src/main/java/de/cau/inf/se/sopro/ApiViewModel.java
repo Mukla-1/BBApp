@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 
 
 import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.SavedStateHandle;
 import androidx.lifecycle.ViewModel;
 
 import java.util.List;
@@ -60,7 +61,7 @@ public class ApiViewModel extends ViewModel {
      *
      */
     @Inject
-    public ApiViewModel(RequestHandler requestHandler) {
+    public ApiViewModel( RequestHandler requestHandler) {
         /*
         An activity is NOT injected.
         // set context to activities context

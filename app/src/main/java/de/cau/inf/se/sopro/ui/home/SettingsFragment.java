@@ -10,12 +10,15 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
 
+import dagger.hilt.android.AndroidEntryPoint;
+import de.cau.inf.se.sopro.ApiViewModel;
 import de.cau.inf.se.sopro.LoginActivity;
 import de.cau.inf.se.sopro.R;
-
+@AndroidEntryPoint
 public class SettingsFragment extends Fragment {
 
     //private FragmentHomeBinding binding;
@@ -26,14 +29,16 @@ public class SettingsFragment extends Fragment {
     EditText url;
     TextView success;
 
+    private ApiViewModel dashboardViewModel;
+
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         // For some reason this works, but not the outcommented one
         View view2 = inflater.inflate(R.layout.fragment_settings,container,false);
 
-        //binding = FragmentHomeBinding.inflate(inflater, container, false);
-        //View root = binding.getRoot();
+        // Connect to ApiViewModel and set up stuff
+        dashboardViewModel = new ViewModelProvider(this).get(ApiViewModel.class);
 
 
         // Connect to the Nav Controller
@@ -53,7 +58,7 @@ public class SettingsFragment extends Fragment {
         success = view2.findViewById(R.id.success_text);
 
         // Get old URL from the API thingy
-        //url.setText(((LoginActivity)getActivity()).getApi().getCurrentURL());
+        url.setText(dashboardViewModel.getCurrentURL());
 
         return view2;
     }
@@ -73,15 +78,12 @@ public class SettingsFragment extends Fragment {
             success.setText("URL darf nicht leer sein!");
             return;
         }
-        /*
-        ApiViewModel api = ((LoginActivity)getActivity()).getApi();
-        if(api.setCurrentURL(newRL)){
-            // Display Success or Failure message
-            success.setText("Applied new URL");
-        }else{
-            success.setText("Failed to apply new URL");
-        }
-        */
+
+        dashboardViewModel.setCurrentURL(newRL);
+        // Display Success or Failure message
+        success.setText("Applied new URL");
+
+
     }
 
 
