@@ -1,13 +1,10 @@
-package de.cau.inf.se.sopro.ui.projectlist;
+package de.cau.inf.se.sopro.ui.projectoverview.grouplist;
 
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -17,46 +14,47 @@ import android.view.ViewGroup;
 
 import de.cau.inf.se.sopro.ApiViewModel;
 import de.cau.inf.se.sopro.R;
-import de.cau.inf.se.sopro.databinding.FragmentProjectListBinding;
-import de.cau.inf.se.sopro.ui.home.HomeFragment;
+import de.cau.inf.se.sopro.databinding.FragmentGroupListBinding;
+import de.cau.inf.se.sopro.databinding.FragmentHeadingListBinding;
+import de.cau.inf.se.sopro.ui.projectoverview.headinglist.HeadingAdapter;
 
-/**
- * Fragment that shows a list of all projects from the database. Each project is displayed with its
- * name in a single list item, which are {@link ProjectItem}s.
- */
-public class ProjectListFragment extends Fragment implements ProjectAdapter.ListItemClickListener {
 
-    private FragmentProjectListBinding binding;
+public class GroupListFragment extends Fragment {
+
+    private FragmentGroupListBinding binding;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        // get groupID from
+        Long groupID = savedInstanceState.getLong("groupID");
+
         // create a ViewModel for request handling
         ApiViewModel requestViewModel =
                 new ViewModelProvider(this).get(ApiViewModel.class);
 
         // inflate the layout for this fragment
-        binding = FragmentProjectListBinding.inflate(inflater, container, false);
+        binding = FragmentGroupListBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
         // get access to recyclerView and set some layout settings
-        RecyclerView recyclerView = binding.projectItemRecyclerView;
+        RecyclerView recyclerView = binding.headingListRecyclerView;
         recyclerView.setLayoutManager(new LinearLayoutManager(root.getContext()));
         recyclerView.setHasFixedSize(true);
 
-        // create the adapter for the recycler view with this fragment as a onClick-Listener
-        ProjectAdapter adapter = new ProjectAdapter(this);
+        // create the adapter for the recycler view
+        GroupAdapter adapter = new GroupAdapter();
         recyclerView.setAdapter(adapter);
 
         // send a request to get all projects from the web API
-        requestViewModel.getProjects();
+        requestViewModel.getGroups(groupID);
 
         // request the current projects and observe for changes
-        requestViewModel.get_projects().observe(getViewLifecycleOwner(), projects -> {
+        requestViewModel.get_groups().observe(getViewLifecycleOwner(), groups -> {
             // define what to do with the projects, which is to update the adapter
-            adapter.setProjects(projects);
+            adapter.setGroups(groups);
         });
 
         return root;
@@ -66,12 +64,5 @@ public class ProjectListFragment extends Fragment implements ProjectAdapter.List
     public void onDestroyView() {
         super.onDestroyView();
         binding = null;
-    }
-
-    @Override
-    public void onListItemClick(long itemID) {
-        Bundle payload = new Bundle();
-        payload.putLong("projectID", itemID);
-        // TODO: navigate to ProjectOverviewFragment with payload
     }
 }

@@ -4,30 +4,30 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.projectoverview.headinglist.HeadingListFragment">
+    tools:context=".ui.projectoverview.grouplist.GroupListFragment">
 
     <TextView
-        android:id="@+id/project_list_title"
+        android:id="@+id/group_list_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/project_list_title"
+        android:text="@string/group_list_title"
         android:textSize="34sp"
-        app:layout_constraintBottom_toTopOf="@+id/project_item_recycler_view"
+        app:layout_constraintBottom_toTopOf="@+id/heading_list_recycler_view"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/project_item_recycler_view"
+        android:id="@+id/heading_list_recycler_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="172dp"
+        android:layout_marginTop="80dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0"
-        tools:listitem="@layout/project_item" />
+        tools:listitem="@layout/fragment_heading_list" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
