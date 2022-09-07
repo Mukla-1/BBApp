@@ -85,11 +85,14 @@ public class MapFragment extends Fragment {
         }
         GeoPoint startPoint = new GeoPoint((Float) b.get("startLatitude"),(Float) b.get("startLongitude"));
         mapController.setCenter(startPoint);
-
-
-
-
-
+        // Put Down Markers
+        Float[] mLat = (Float[]) b.get("markersLatitude");
+        Float[] mLng = (Float[]) b.get("markersLongitude");
+        String[] mTxt = (String[]) b.get("markersText");
+        // Check for Potential errors
+        if(!mLat.equals(null) && !mLng.equals(null) && !mTxt.equals(null)){
+            addMarkers(mLat,mLng,mTxt);
+        }
 
         return view2;
 
@@ -101,15 +104,16 @@ public class MapFragment extends Fragment {
     }
 
     // Create Markers on the Map
-    private void addMarkers(GeoPoint[] ps,String[] ts){
-        int l = ps.length;
+    private void addMarkers(Float[] lats,Float[] lngs,String[] ts){
+        int l = lats.length;
         // Check if they have the same Size
-        if(l == ts.length){
+        if(l == ts.length && l == lngs.length){
             for (int i = 0;i < l;i++){
                 Marker marker = new Marker(map);
-                marker.setPosition(ps[i]);
+                marker.setPosition(new GeoPoint(lats[i],lngs[i]));
                 marker.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM);
                 marker.setTitle(ts[i]);
+                //marker.setIcon(getResources().getDrawable(R.drawable.ic_launcher));
                 map.getOverlays().add(marker);
             }
         }

@@ -78,7 +78,6 @@ public class SettingsFragment extends Fragment {
             success.setText("URL darf nicht leer sein!");
             return;
         }
-
         dashboardViewModel.setCurrentURL(newRL);
         // Display Success or Failure message
         success.setText("Applied new URL");
