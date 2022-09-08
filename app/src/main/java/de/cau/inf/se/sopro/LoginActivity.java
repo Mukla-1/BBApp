@@ -8,6 +8,7 @@ import androidx.navigation.NavController;
 import dagger.hilt.android.AndroidEntryPoint;
 import de.cau.inf.se.sopro.databinding.ActivityMainBinding;
 
+
 @AndroidEntryPoint
 public class LoginActivity extends AppCompatActivity {
 

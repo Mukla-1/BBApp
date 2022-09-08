@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -12,6 +13,8 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
+
+import com.bumptech.glide.Glide;
 
 import dagger.hilt.android.AndroidEntryPoint;
 import de.cau.inf.se.sopro.ApiViewModel;
@@ -62,8 +65,9 @@ public class SubprojectOverviewFragment extends Fragment {
                 (NavHostFragment) getActivity().getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment_activity_main);
         navController = navHostFragment.getNavController();
 
-        View view2 = view.findViewById(R.id.imageView);
-        //Glide.with(this).load(subbi.getSubprojectPictureURL()).into(view2);
+        ImageView view2 = view.findViewById(R.id.imageView);
+        Glide.with(this).load(subbi.getSubprojectPictureURL()).into(view2);
+
 
         //für Nachricht an Benutzer, dass Vote abgegeben wurde
         final TextView txtview = view.findViewById(R.id.textView3);
