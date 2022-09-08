@@ -7,9 +7,53 @@
 
     <fragment
         android:id="@+id/navigation_home"
-        android:name="de.cau.inf.se.sopro.ui.home.LoginFragment"
-        android:label="Whatever"
-        tools:layout="@layout/fragment_home" />
+        android:name="de.cau.inf.se.sopro.ui.home.HomeFragment"
+        android:label="Projekte"
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_project_list_to_project_overview"
+            app:destination="@id/navigation_project_overview" />
+        <action
+            android:id="@+id/home_to_home"
+            app:destination="@id/navigation_home"
+           />
+    </fragment>
 
+
+    <fragment
+        android:id="@+id/navigation_project_overview"
+        android:name="de.cau.inf.se.sopro.ui.projectoverview.ProjectOverviewFragment"
+        android:label="Projektübersicht"
+        tools:layout="@layout/fragment_project_overview">
+        <action
+            android:id="@+id/action_project_overview_to_home"
+            app:destination="@id/navigation_home" />
+        <action
+            android:id="@+id/action_project_overview_to_subproject_list"
+            app:destination="@id/navigation_subproject_list" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_subproject_list"
+        android:name="de.cau.inf.se.sopro.ui.subprojectlist.SubprojectListFragment"
+        android:label="Subprojektliste"
+        tools:layout="@layout/fragment_subproject_list">
+        <action
+            android:id="@+id/action_subproject_list_to_home"
+            app:destination="@id/navigation_home" />
+        <action
+            android:id="@+id/action_subproject_list_to_subproject_overview"
+            app:destination="@id/navigation_subproject_overview" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_subproject_overview"
+        android:name="de.cau.inf.se.sopro.ui.subproject.SubprojectOverviewFragment"
+        android:label="@string/default_subproject_label"
+        tools:layout="@layout/fragment_subproject_overview">
+        <action
+            android:id="@+id/action_subproject_overview_to_home"
+            app:destination="navigation_home" />
+    </fragment>
 
 </navigation>
