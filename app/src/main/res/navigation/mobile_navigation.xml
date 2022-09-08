@@ -22,7 +22,7 @@
 
     <fragment
         android:id="@+id/navigation_project_overview"
-        android:name="de.cau.inf.se.sopro.ui.project.ProjectOverviewFragment"
+        android:name="de.cau.inf.se.sopro.ui.projectoverview.ProjectOverviewFragment"
         android:label="Projektübersicht"
         tools:layout="@layout/fragment_project_overview">
         <action

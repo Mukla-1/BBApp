@@ -62,6 +62,8 @@ public class SubprojectOverviewFragment extends Fragment {
                 (NavHostFragment) getActivity().getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment_activity_main);
         navController = navHostFragment.getNavController();
 
+        View view2 = view.findViewById(R.id.imageView);
+        //Glide.with(this).load(subbi.getSubprojectPictureURL()).into(view2);
 
         //für Nachricht an Benutzer, dass Vote abgegeben wurde
         final TextView txtview = view.findViewById(R.id.textView3);
@@ -72,12 +74,15 @@ public class SubprojectOverviewFragment extends Fragment {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 requestViewModel.voteSubproject(id);
+
                 requestViewModel.get_subprojectVoteSuccess().observe(getViewLifecycleOwner(), votesucces -> {
                     //vote ist durchgegangen oder nicht
-                    if (votesucces) {
+                    if (votesucces){
                         txtview.setText("Sie haben erfolgreich für das Projekt gevotet!");
-                    } else {
+                    }
+                    else {
                         txtview.setText("Etwas ist beim voten schiefgelaufen! :(");
                     }
                 });
