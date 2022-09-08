@@ -202,7 +202,7 @@ public class RequestHandler {
      * @return {@code true} if the voting process worked, {@code false} if there was an error
      */
     public Call<Boolean> voteSubproject(Long subprojectID, String username) {
-        return null;
+        return webService.voteSubproject(subprojectID, username);
     }
 
     /**
