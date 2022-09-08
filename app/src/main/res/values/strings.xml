@@ -2,7 +2,10 @@
     <string name="app_name">Bürgerbeteiligungssoftware</string>
 
     <string name="default_project_name">Projektname</string>
-    <string name="default_project_description">Hier wird das Projekt beschrieben</string>
+    <string name="default_project_description">Hier wird das Projekt in einigen Sätzen beschrieben.
+        Befindet sich in der Datenbank keine Beschreibung, wird stattdessen dieser Text hier angezeigt.
+        Es ist bestimmt trotzdem ein spannendes Projekt,
+        also erkunden Sie doch mal die Unterprojekte! :)</string>
     <string name="project_list_title">Aktuelle Projekte</string>
     <string name="heading_list_title">Gruppenname</string>
     <string name="group_list_title">Alle Unterprojekte:</string>
