@@ -38,7 +38,7 @@ public interface WebService {
     @POST("/app/addUser/{username}/{password}")
     public Call<Boolean> addUser(@Path("username") String username, @Path("password") String password);
 
-    //ACHTUNG ACHTUNG MIT WEBGRUPPE KLÄREN OB GET WIRKLICH RICHTIG SEIN SOLL
+
     @GET("/app/validateLogin/{username}/{password}")
     public Call<Boolean> validateLogin(@Path("username") String username, @Path("password") String password);
 
@@ -67,6 +67,9 @@ public interface WebService {
 
     @GET("/app/getSubprojectInfoItem/{subprojectID}/{userID}")
     public Call<SubprojectInfoItem> getSubprojectInfo(@Path("subprojectID") Long subprojectID,@Path("userID") String username);
+
+    @POST("/app/voteSubproject/{subprojectId}/{userID}")
+    public Call<Boolean> voteSubproject(@Path("subprojectId") Long subprojectID, @Path("userId") String username);
 
 
     /*

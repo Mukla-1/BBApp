@@ -192,7 +192,7 @@ public class RequestHandler {
         return webService.getSubcomments(commentID, username);
     }
 
-    //CAUTION NOT IMPLEMENTED RIGHT NOW IN WEB APP/API!!!!!!
+ 
     /**
      * Casts a vote on a subproject from the user's account.
      * In the forwarded method call, the username is propagated to save the name of the voting
@@ -202,7 +202,7 @@ public class RequestHandler {
      * @return {@code true} if the voting process worked, {@code false} if there was an error
      */
     public Call<Boolean> voteSubproject(Long subprojectID, String username) {
-        return null;
+        return webService.voteSubproject(subprojectID, username);
     }
 
     /**
