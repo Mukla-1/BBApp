@@ -74,7 +74,16 @@ public class MapFragment extends Fragment {
 
         // get passed in arguments
         Bundle b = this.getArguments();
-        returnAction = (Integer) b.get("returnAction");
+        // Do we need the Return action
+        if (b.get("returnAction")  != null){
+            returnAction = (Integer) b.get("returnAction");
+        }else{
+            // Disable back button if used as Subfragment
+            button_back.setEnabled(false);
+            button_back.setClickable(false);
+            button_back.setVisibility(View.INVISIBLE);
+        }
+
 
         // Somehow do Setup
         IMapController mapController = map.getController();
@@ -83,7 +92,12 @@ public class MapFragment extends Fragment {
         }else{
             mapController.setZoom((int) b.get("startZoom"));
         }
-        GeoPoint startPoint = new GeoPoint((Float) b.get("startLatitude"),(Float) b.get("startLongitude"));
+        GeoPoint startPoint;
+        if(b.get("startLatitude") != null && b.get("startLongitude") != null) {
+            startPoint = new GeoPoint((Float) b.get("startLatitude"), (Float) b.get("startLongitude"));
+        }else{
+            startPoint = new GeoPoint(0,0);
+        }
         mapController.setCenter(startPoint);
         // Put Down Markers
         Float[] mLat = (Float[]) b.get("markersLatitude");
