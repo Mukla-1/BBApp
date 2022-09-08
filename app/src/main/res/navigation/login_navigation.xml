@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/login_home"
         android:name="de.cau.inf.se.sopro.ui.home.LoginFragment"
-        android:label="@string/title_home"
+        android:label=""
         tools:layout="@layout/fragment_login">
         <action
             android:id="@+id/action_login_to_settings"
