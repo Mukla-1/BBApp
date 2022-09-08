@@ -39,7 +39,13 @@ android {
     }
 }
 
+
+
 dependencies {
+
+    // StateProgressBar for Phases
+    implementation 'com.kofigyan.stateprogressbar:stateprogressbar:1.0.0'
+
 
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
 
@@ -82,9 +88,6 @@ dependencies {
     implementation 'org.osmdroid:osmdroid-wms:6.1.14'
     implementation 'org.osmdroid:osmdroid-mapsforge:6.1.14'
     implementation 'org.osmdroid:osmdroid-geopackage:6.1.14'
-
-    //State Bar for Phases
-    // implementation 'com.kofigyan.stateprogressbar:stateprogressbar:1.0.0'
 
 
     testImplementation 'junit:junit:4.13.2'

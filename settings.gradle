@@ -3,6 +3,8 @@ pluginManagement {
         gradlePluginPortal()
         google()
         mavenCentral()
+        // Needed for StateProgressBars
+        jcenter()
     }
 }
 dependencyResolutionManagement {
@@ -10,6 +12,7 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
+        jcenter()
     }
 }
 rootProject.name = "sopro-android-11-demo"

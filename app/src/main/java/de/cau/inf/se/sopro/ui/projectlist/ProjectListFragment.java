@@ -18,7 +18,7 @@ import android.view.ViewGroup;
 import de.cau.inf.se.sopro.ApiViewModel;
 import de.cau.inf.se.sopro.R;
 import de.cau.inf.se.sopro.databinding.FragmentProjectListBinding;
-import de.cau.inf.se.sopro.ui.home.HomeFragment;
+//import de.cau.inf.se.sopro.ui.home.HomeFragment;
 
 /**
  * Fragment that shows a list of all projects from the database. Each project is displayed with its
