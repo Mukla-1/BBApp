@@ -35,7 +35,7 @@ public class ProjectAdapter extends RecyclerView.Adapter<ProjectAdapter.ProjectH
     @Override
     public void onBindViewHolder(@NonNull ProjectHolder holder, int position) {
         ProjectBaseInfoItem currentProject = projects.get(position);
-        holder.textViewTitle.setText(currentProject.getProjectName());
+        holder.textViewProjectName.setText(currentProject.getProjectName());
     }
 
     @Override
@@ -50,11 +50,11 @@ public class ProjectAdapter extends RecyclerView.Adapter<ProjectAdapter.ProjectH
 
     class ProjectHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        private TextView textViewTitle;
+        private TextView textViewProjectName;
 
         public ProjectHolder(@NonNull View itemView) {
             super(itemView);
-            textViewTitle = itemView.findViewById(R.id.text_view_title);
+            textViewProjectName = itemView.findViewById(R.id.text_view_project_name);
             itemView.setOnClickListener(this);
         }
 

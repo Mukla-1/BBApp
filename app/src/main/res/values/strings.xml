@@ -7,6 +7,7 @@
         Es ist bestimmt trotzdem ein spannendes Projekt,
         also erkunden Sie doch mal die Unterprojekte! :)</string>
     <string name="project_list_title">Aktuelle Projekte</string>
+    <string name="subproject_list_title">Aktuelle Unterprojekte</string>
     <string name="heading_list_title">Gruppenname</string>
     <string name="group_list_title">Alle Unterprojekte:</string>
     <string name="default_heading_name">Headingname</string>

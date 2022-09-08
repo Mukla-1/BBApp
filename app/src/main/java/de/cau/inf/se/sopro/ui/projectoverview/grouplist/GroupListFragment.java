@@ -28,8 +28,8 @@ public class GroupListFragment extends Fragment {
                              Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        // get groupID from
-        Long groupID = savedInstanceState.getLong("groupID");
+        // get projectID from
+        Long projectID = savedInstanceState.getLong("projectID");
 
         // create a ViewModel for request handling
         ApiViewModel requestViewModel =
@@ -48,12 +48,12 @@ public class GroupListFragment extends Fragment {
         GroupAdapter adapter = new GroupAdapter();
         recyclerView.setAdapter(adapter);
 
-        // send a request to get all projects from the web API
-        requestViewModel.getGroups(groupID);
+        // send a request to get all groups from the web API
+        requestViewModel.getGroups(projectID);
 
-        // request the current projects and observe for changes
+        // request the current groups and observe for changes
         requestViewModel.get_groups().observe(getViewLifecycleOwner(), groups -> {
-            // define what to do with the projects, which is to update the adapter
+            // define what to do with the groups, which is to update the adapter
             adapter.setGroups(groups);
         });
 

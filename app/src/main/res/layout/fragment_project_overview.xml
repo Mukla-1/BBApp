@@ -13,10 +13,11 @@
         tools:context=".ui.projectoverview.ProjectOverviewFragment">
 
         <TextView
-            android:id="@+id/text_view_title"
+            android:id="@+id/text_view_project_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/default_project_name"
+            android:textSize="32dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -28,18 +29,29 @@
             android:layout_marginTop="20dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/text_view_title"
+            app:layout_constraintTop_toBottomOf="@+id/text_view_project_title"
             tools:src="@tools:sample/avatars" />
 
-        <androidx.fragment.app.FragmentContainerView
-            android:id="@+id/phase_overview_fragment_container"
-            android:name="de.cau.inf.se.sopro.ui.projectlist.ProjectItem"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
+        <!--Progress Bar created-->
+        <com.kofigyan.stateprogressbar.StateProgressBar
+            android:id="@+id/state_progress_bar_project"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
+            android:layout_centerInParent="true"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/image_view_project_image" />
+            app:layout_constraintTop_toBottomOf="@+id/image_view_project_image"
+            app:spb_animateToCurrentProgressState="true"
+            app:spb_checkStateCompleted="true"
+            app:spb_currentStateDescriptionColor="#0F9D58"
+            app:spb_currentStateNumber="two"
+            app:spb_maxStateNumber="five"
+            app:spb_stateBackgroundColor="#BDBDBD"
+            app:spb_stateDescriptionColor="#808080"
+            app:spb_stateForegroundColor="#0F9D58"
+            app:spb_stateNumberBackgroundColor="#808080"
+            app:spb_stateNumberForegroundColor="#eeeeee" />
 
         <TextView
             android:id="@+id/description_text_view"
@@ -49,7 +61,7 @@
             android:text="@string/default_project_description"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/phase_overview_fragment_container" />
+            app:layout_constraintTop_toBottomOf="@+id/state_progress_bar_project" />
 
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/group_list_fragment_container_view"

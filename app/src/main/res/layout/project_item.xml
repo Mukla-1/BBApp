@@ -12,7 +12,7 @@ android:layout_marginTop="8dp">
     android:padding="8dp">
 
     <TextView
-        android:id="@+id/text_view_title"
+        android:id="@+id/text_view_project_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/default_project_name"
