@@ -2,27 +2,37 @@ package de.cau.inf.se.sopro.model;
 
 public class GeoData {
 
-	private float longitude;
-	private float latitude;
-	
-	public GeoData(float latitude, float longitude) {
-		this.latitude = latitude;
-		this.longitude = longitude;
-	}
-	
-	public float getLatitude() {
-		return latitude;
-	}
+    private float longitude;
+    private float latitude;
+    private String name;
 
-	public void setLatitude(float latitude) {
-		this.latitude = latitude;
-	}
+    public GeoData(float latitude, float longitude, String name) {
+        this.latitude = latitude;
+        this.longitude = longitude;
+        this.name = name;
+    }
 
-	public float getLongitude() {
-		return longitude;
-	}
+    public float getLatitude() {
+        return latitude;
+    }
 
-	public void setLongitude(float longitude) {
-		this.longitude = longitude;
-	}
+    public void setLatitude(float latitude) {
+        this.latitude = latitude;
+    }
+
+    public float getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(float longitude) {
+        this.longitude = longitude;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 }
