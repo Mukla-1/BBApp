@@ -4,39 +4,40 @@ import de.cau.inf.se.sopro.model.GeoData;
 
 public class SubprojectBaseInfoItem {
 
-	private Long subprojectID;
-	private String subprojectName;
-	private GeoData[] subprojectGeoData;
-	
-	public SubprojectBaseInfoItem(Long subprojectID, String subprojectName, GeoData[] subprojectGeoData) {
-		this.subprojectID = subprojectID;
-		this.subprojectName = subprojectName;
-		this.subprojectGeoData = subprojectGeoData;
-	}
+    private Long subprojectID;
+    private String subprojectName;
+    private GeoData subprojectGeoData;
 
-	public Long getSubprojectID() {
-		return subprojectID;
-	}
+    public SubprojectBaseInfoItem(Long subprojectID, String subprojectName, GeoData subprojectGeoData) {
+        this.subprojectID = subprojectID;
+        this.subprojectName = subprojectName;
+        this.subprojectGeoData = subprojectGeoData;
+    }
 
-	public void setSubprojectID(Long subprojectID) {
-		this.subprojectID = subprojectID;
-	}
+    public Long getSubprojectID() {
+        return subprojectID;
+    }
 
-	public String getSubprojectName() {
-		return subprojectName;
-	}
+    public void setSubprojectID(Long subprojectID) {
+        this.subprojectID = subprojectID;
+    }
 
-	public void setSubprojectName(String subprojectName) {
-		this.subprojectName = subprojectName;
-	}
+    public String getSubprojectName() {
+        return subprojectName;
+    }
 
-	public GeoData[] getSubprojectGeoData() {
-		return subprojectGeoData;
-	}
+    public void setSubprojectName(String subprojectName) {
+        this.subprojectName = subprojectName;
+    }
 
-	public void setSubprojectGeoData(GeoData[] subprojectGeoData) {
-		this.subprojectGeoData = subprojectGeoData;
-	}
-	
-	
+    public GeoData getSubprojectGeoData() {
+        return subprojectGeoData;
+    }
+
+    public void setSubprojectGeoData(GeoData subprojectGeoData) {
+        this.subprojectGeoData = subprojectGeoData;
+    }
+
+
 }
+
