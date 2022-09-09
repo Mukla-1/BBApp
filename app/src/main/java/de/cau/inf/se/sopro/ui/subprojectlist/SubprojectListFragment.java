@@ -65,7 +65,7 @@ public class SubprojectListFragment extends Fragment implements SubprojectAdapte
 
         // Connect to the Nav Controller
         NavHostFragment navHostFragment =
-                (NavHostFragment) getActivity().getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment_activity_login);
+                (NavHostFragment) getActivity().getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment_activity_main);
         this.navController = navHostFragment.getNavController();
 
         return root;

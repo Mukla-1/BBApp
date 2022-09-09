@@ -9,6 +9,7 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.SavedStateHandle;
 import androidx.lifecycle.ViewModel;
 
+import java.util.HashMap;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -54,6 +55,17 @@ public class ApiViewModel extends ViewModel {
     private final MutableLiveData<Boolean> _commentCreationSuccess = new MutableLiveData<>();
     private final MutableLiveData<Boolean> _commentVoteSuccess = new MutableLiveData<>();
 
+    //To save the mapping between a Group ID and the subs, the HeadingBaseInfoItems.
+    private final MutableLiveData<HashMap<GroupBaseInfoItem, List<HeadingBaseInfoItem>>> _groupHeadingMap = new MutableLiveData<>();
+
+    /**
+     * Updates the LiveData containing (Group, Headings) pairs.
+     * @param projectID
+     */
+    public void getGroupWithHeadings(Long projectID){
+        requestHandler.updateGroupHeadingMap(_groupHeadingMap, projectID);
+
+    }
 
 
     /**
@@ -333,4 +345,6 @@ public class ApiViewModel extends ViewModel {
     public MutableLiveData<Boolean> get_commentVoteSuccess() {
         return _commentVoteSuccess;
     }
+
+    public MutableLiveData<HashMap<GroupBaseInfoItem, List<HeadingBaseInfoItem>>> get_groupHeadingMap() {return _groupHeadingMap;}
 }

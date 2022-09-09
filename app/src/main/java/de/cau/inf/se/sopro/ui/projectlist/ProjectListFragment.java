@@ -15,6 +15,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import dagger.hilt.android.AndroidEntryPoint;
 import de.cau.inf.se.sopro.ApiViewModel;
 import de.cau.inf.se.sopro.R;
 import de.cau.inf.se.sopro.databinding.FragmentProjectListBinding;
@@ -24,6 +25,7 @@ import de.cau.inf.se.sopro.databinding.FragmentProjectListBinding;
  * Fragment that shows a list of all projects from the database. Each project is displayed with its
  * name in a single list item, which are {@link ProjectItem}s.
  */
+@AndroidEntryPoint
 public class ProjectListFragment extends Fragment implements ProjectAdapter.ListItemClickListener {
     private NavController navController;
     private FragmentProjectListBinding binding;
@@ -62,7 +64,7 @@ public class ProjectListFragment extends Fragment implements ProjectAdapter.List
 
         // Connect to the Nav Controller
         NavHostFragment navHostFragment =
-                (NavHostFragment) getActivity().getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment_activity_login);
+                (NavHostFragment) getActivity().getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment_activity_main);
         this.navController = navHostFragment.getNavController();
 
 

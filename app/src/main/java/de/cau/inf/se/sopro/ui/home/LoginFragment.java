@@ -71,6 +71,7 @@ public class LoginFragment extends Fragment {
         text_hint = view2.findViewById(R.id.output);
 
         return view2;
+
     }
 
 
@@ -102,7 +103,8 @@ public class LoginFragment extends Fragment {
             return;
         }
         dashboardViewModel.validateLogin(un,pw);
-
+        //DELETE
+        switchActivity("admin", "12345678");
     }
 
     protected void onRegisterButtonClick(){
