@@ -33,7 +33,7 @@ public class GroupListFragment extends Fragment {
 
         // create a ViewModel for request handling
         ApiViewModel requestViewModel =
-                new ViewModelProvider(this).get(ApiViewModel.class);
+                new ViewModelProvider(requireActivity()).get(ApiViewModel.class);
 
         // inflate the layout for this fragment
         binding = FragmentGroupListBinding.inflate(inflater, container, false);

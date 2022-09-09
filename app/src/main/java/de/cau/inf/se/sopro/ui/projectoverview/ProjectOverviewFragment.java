@@ -44,6 +44,7 @@ public class ProjectOverviewFragment extends Fragment {
 
         Long projectID = this.getArguments().getLong("projectID");
 
+
         NavHostFragment navHostFragment =
                 (NavHostFragment) getActivity().getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment_activity_main);
 
@@ -52,12 +53,12 @@ public class ProjectOverviewFragment extends Fragment {
 
         // create a ViewModel for request handling
         ApiViewModel requestViewModel =
-                new ViewModelProvider(this).get(ApiViewModel.class);
+                new ViewModelProvider(requireActivity()).get(ApiViewModel.class);
 
 
         // TODO: nachher wieder entfernen WICHTIG!!!11!!1
 
-        binding.tempButton.setOnClickListener(new View.OnClickListener() {
+    /*    binding.tempButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
@@ -67,7 +68,7 @@ public class ProjectOverviewFragment extends Fragment {
                 NavHostFragment.findNavController(ProjectOverviewFragment.this)
                         .navigate(R.id.action_project_overview_to_subproject_list);
             }
-        });
+        });*/
 
         // TODO: nachher wieder entfernen WICHTIG!!!11!!1
 

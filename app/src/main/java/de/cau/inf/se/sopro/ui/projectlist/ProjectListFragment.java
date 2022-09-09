@@ -37,7 +37,7 @@ public class ProjectListFragment extends Fragment implements ProjectAdapter.List
 
         // create a ViewModel for request handling
         ApiViewModel requestViewModel =
-                new ViewModelProvider(this).get(ApiViewModel.class);
+                new ViewModelProvider(requireActivity()).get(ApiViewModel.class);
 
         // inflate the layout for this fragment
         binding = FragmentProjectListBinding.inflate(inflater, container, false);
@@ -81,7 +81,6 @@ public class ProjectListFragment extends Fragment implements ProjectAdapter.List
     public void onListItemClick(long itemID) {
         Bundle payload = new Bundle();
         payload.putLong("projectID", itemID);
-
         // switch fragments
         this.navController.navigate(R.id.action_project_list_to_project_overview, payload);
     }
