@@ -6,6 +6,8 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.NavController;
+import androidx.navigation.fragment.NavHostFragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -32,6 +34,7 @@ import de.cau.inf.se.sopro.databinding.FragmentProjectOverviewBinding;
 @AndroidEntryPoint
 public class ProjectOverviewFragment extends Fragment {
 
+    private NavController navController;
     private FragmentProjectOverviewBinding binding;
 
     @Override
@@ -39,11 +42,36 @@ public class ProjectOverviewFragment extends Fragment {
                              Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        Long projectID = savedInstanceState.getLong("projectID");
+        Long projectID = this.getArguments().getLong("projectID");
+
+        NavHostFragment navHostFragment =
+                (NavHostFragment) getActivity().getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment_activity_main);
+
+        navController = navHostFragment.getNavController();
+
 
         // create a ViewModel for request handling
         ApiViewModel requestViewModel =
                 new ViewModelProvider(this).get(ApiViewModel.class);
+
+
+        // TODO: nachher wieder entfernen WICHTIG!!!11!!1
+
+        binding.tempButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Bundle payload = new Bundle();
+                payload.putLong("headingID",11);
+                payload.putString("headingName", " Hallo, Mads hier :D");
+                NavHostFragment.findNavController(ProjectOverviewFragment.this)
+                        .navigate(R.id.action_project_overview_to_subproject_list);
+            }
+        });
+
+        // TODO: nachher wieder entfernen WICHTIG!!!11!!1
+
+
 
         // Inflate the layout for this fragment
         binding = FragmentProjectOverviewBinding.inflate(inflater, container, false);
@@ -95,6 +123,7 @@ public class ProjectOverviewFragment extends Fragment {
                 if (phases.length > 5) {
                     // TODO: implement better option then just cutting off the rest
                     // if so, cut off the rest
+
                     phases = Arrays.copyOfRange(phases, 0, 5);
                 }
                 projectProgressBar.setStateDescriptionData(phases);
@@ -104,7 +133,7 @@ public class ProjectOverviewFragment extends Fragment {
             // phase info can only show 5 phases, index 4 is phase 5
             if (activePhase > 4) {
                 // TODO: implement better option
-               activePhase = 4;
+                activePhase = 4;
             }
             // set active phase
             switch (activePhase) {
@@ -131,6 +160,9 @@ public class ProjectOverviewFragment extends Fragment {
         });
         return root;
     }
+
+
+
 
     @Override
     public void onDestroyView() {

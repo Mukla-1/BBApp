@@ -25,7 +25,7 @@ import de.cau.inf.se.sopro.databinding.FragmentProjectListBinding;
  * name in a single list item, which are {@link ProjectItem}s.
  */
 public class ProjectListFragment extends Fragment implements ProjectAdapter.ListItemClickListener {
-
+    private NavController navController;
     private FragmentProjectListBinding binding;
 
     @Override
@@ -59,6 +59,13 @@ public class ProjectListFragment extends Fragment implements ProjectAdapter.List
             adapter.setProjects(projects);
         });
 
+
+        // Connect to the Nav Controller
+        NavHostFragment navHostFragment =
+                (NavHostFragment) getActivity().getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment_activity_login);
+        this.navController = navHostFragment.getNavController();
+
+
         return root;
     }
 
@@ -72,6 +79,8 @@ public class ProjectListFragment extends Fragment implements ProjectAdapter.List
     public void onListItemClick(long itemID) {
         Bundle payload = new Bundle();
         payload.putLong("projectID", itemID);
-        // TODO: navigate to ProjectOverviewFragment with payload
+
+        // switch fragments
+        this.navController.navigate(R.id.action_project_list_to_project_overview, payload);
     }
 }

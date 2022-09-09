@@ -42,7 +42,8 @@ public class SubprojectOverviewFragment extends Fragment {
         view = inflater.inflate(R.layout.fragment_subproject_overview, container, false);
 
         //übergebene subprojectID festigen
-        id = savedInstanceState.getLong("subprojectID");
+        Bundle bundi = this.getArguments();
+        id = bundi.getLong("subprojectID");
 
         //api für anfragen nach außen
         requestViewModel =
@@ -53,8 +54,17 @@ public class SubprojectOverviewFragment extends Fragment {
         requestViewModel.getSubprojectInfo(id);
         requestViewModel.get_subprojectInfo().observe(getViewLifecycleOwner(), subprojectInfoItem -> {
             subbi = subprojectInfoItem;
+            this.upDateSubbi();
+
         });
 
+
+        return view;
+
+
+    }
+
+    private void upDateSubbi() {
         //Beschriftung einfügen
         final TextView txtview2 = view.findViewById(R.id.textView2);
         txtview2.setText(subbi.getSubprojectDescription());
@@ -95,11 +105,7 @@ public class SubprojectOverviewFragment extends Fragment {
             }
         });
 
-        return view;
-
-
     }
-
 
     @Override
     public void onDestroyView() {

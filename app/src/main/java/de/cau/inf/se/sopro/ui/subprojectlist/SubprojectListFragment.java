@@ -8,16 +8,19 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.NavController;
+import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import de.cau.inf.se.sopro.ApiViewModel;
+import de.cau.inf.se.sopro.R;
 import de.cau.inf.se.sopro.databinding.FragmentProjectListBinding;
 import de.cau.inf.se.sopro.databinding.FragmentSubprojectListBinding;
 import de.cau.inf.se.sopro.ui.projectlist.ProjectAdapter;
 
 public class SubprojectListFragment extends Fragment implements SubprojectAdapter.ListItemClickListener {
-
+    private NavController navController;
     private FragmentSubprojectListBinding binding;
 
     @Override
@@ -25,8 +28,11 @@ public class SubprojectListFragment extends Fragment implements SubprojectAdapte
                              Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        Long headingID = savedInstanceState.getLong("headingID");
-        String headingName = savedInstanceState.getString("headingName");
+        Long headingID = getArguments().getLong("headingID");
+
+
+        String headingName = getArguments().getString("headingName");
+
 
         // create a ViewModel for request handling
         ApiViewModel requestViewModel =
@@ -57,6 +63,11 @@ public class SubprojectListFragment extends Fragment implements SubprojectAdapte
             adapter.setSubprojects(subprojects);
         });
 
+        // Connect to the Nav Controller
+        NavHostFragment navHostFragment =
+                (NavHostFragment) getActivity().getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment_activity_login);
+        this.navController = navHostFragment.getNavController();
+
         return root;
     }
 
@@ -70,6 +81,7 @@ public class SubprojectListFragment extends Fragment implements SubprojectAdapte
     public void onListItemClick(long itemID) {
         Bundle payload = new Bundle();
         payload.putLong("subprojectID", itemID);
-        // TODO: navigate to SubprojectOverviewFragment with payload
+
+        this.navController.navigate(R.id.action_subproject_list_to_subproject_overview, payload);
     }
 }
