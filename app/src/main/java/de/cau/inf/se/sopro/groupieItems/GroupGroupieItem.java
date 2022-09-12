@@ -14,11 +14,11 @@ import com.xwray.groupie.Item;
 import de.cau.inf.se.sopro.R;
 import de.cau.inf.se.sopro.model.GroupBaseInfoItem;
 
-public class SampleItem extends Item<GroupieViewHolder> implements ExpandableItem {
+public class GroupGroupieItem extends Item<GroupieViewHolder> implements ExpandableItem {
 
     private ExpandableGroup eg;
     private GroupBaseInfoItem gb;
-    public SampleItem(GroupBaseInfoItem gb){
+    public GroupGroupieItem(GroupBaseInfoItem gb){
         this.gb = gb;
     }
 

@@ -36,7 +36,6 @@ public class SubprojectListFragment extends Fragment implements SubprojectAdapte
 
         Long headingID = getArguments().getLong("headingID");
 
-
         String headingName = getArguments().getString("headingName");
 
 

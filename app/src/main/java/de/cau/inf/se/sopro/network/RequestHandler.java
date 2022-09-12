@@ -67,7 +67,8 @@ public class RequestHandler {
      * @param projectID : ID of a project.
      */
     public void updateGroupHeadingMap(MutableLiveData<HashMap<GroupBaseInfoItem, List<HeadingBaseInfoItem>>> ghm, Long projectID){
-              getGroups(projectID).enqueue(new Callback<List<GroupBaseInfoItem>>() {
+        hmap.clear();
+        getGroups(projectID).enqueue(new Callback<List<GroupBaseInfoItem>>() {
             @Override
             public void onResponse(Call<List<GroupBaseInfoItem>> call, Response<List<GroupBaseInfoItem>> response) {
                 if (response.isSuccessful()) {
@@ -85,9 +86,9 @@ public class RequestHandler {
                                     //System.out.println("Unteranfrage kam auch durch");
                                     //Get the headings of one groups
                                     List<HeadingBaseInfoItem> headingsList = response2.body();
-                                    for(HeadingBaseInfoItem hb:headingsList){
-                                        //System.out.println(hb.getHeadingName());
-                                    }
+                                    /*for(HeadingBaseInfoItem hb:headingsList){
+                                        System.out.println(hb.getHeadingName());
+                                    }*/
                                     //Add (Group, Headings) to the map
                                     hmap.put(g, headingsList);
                                     //ATTENTION, this causes the ghm to update very often, but currently

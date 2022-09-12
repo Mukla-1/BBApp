@@ -64,6 +64,7 @@ public class ApiViewModel extends ViewModel {
      * @param projectID
      */
     public void getGroupWithHeadings(Long projectID){
+        _groupHeadingMap.setValue(new HashMap<GroupBaseInfoItem, List<HeadingBaseInfoItem>>());
         requestHandler.updateGroupHeadingMap(_groupHeadingMap, projectID);
 
     }

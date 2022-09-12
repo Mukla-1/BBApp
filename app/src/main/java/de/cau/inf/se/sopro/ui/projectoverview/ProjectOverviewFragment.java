@@ -68,6 +68,9 @@ public class ProjectOverviewFragment extends Fragment {
 
         // TODO: nachher wieder entfernen WICHTIG!!!11!!1
 
+
+    /*
+>>>>>>> Stashed changes
         binding.tempButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -80,9 +83,8 @@ public class ProjectOverviewFragment extends Fragment {
                         .navigate(R.id.action_project_overview_to_subproject_list,payload);
             }
         });
-
+*/
         // TODO: nachher wieder entfernen WICHTIG!!!11!!1
-
         // TODO: Sehr Nötig
         Fragment frag = (Fragment) getChildFragmentManager().findFragmentById(R.id.group_list_fragment_container_view);
         Bundle payload = new Bundle();
