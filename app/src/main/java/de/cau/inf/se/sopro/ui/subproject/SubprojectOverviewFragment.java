@@ -16,10 +16,13 @@ import androidx.navigation.fragment.NavHostFragment;
 
 import com.bumptech.glide.Glide;
 
+import org.osmdroid.util.GeoPoint;
+
 import dagger.hilt.android.AndroidEntryPoint;
 import de.cau.inf.se.sopro.ApiViewModel;
 import de.cau.inf.se.sopro.R;
 import de.cau.inf.se.sopro.model.SubprojectInfoItem;
+import de.cau.inf.se.sopro.ui.home.MapFragment;
 
 /**
  * Klasse für die SubprojectOverView
@@ -105,6 +108,7 @@ public class SubprojectOverviewFragment extends Fragment {
         final TextView txtview2 = view.findViewById(R.id.textView2);
         txtview2.setText(subbi.getSubprojectDescription());
 
+
         // Subprojekttitel einfügen
         final TextView title = view.findViewById(R.id.subtitle);
         title.setText(subbi.getSubprojectName());
@@ -114,9 +118,13 @@ public class SubprojectOverviewFragment extends Fragment {
                 (NavHostFragment) getActivity().getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment_activity_main);
         navController = navHostFragment.getNavController();
 
+        // Bild einfügen
         ImageView view2 = view.findViewById(R.id.imageView);
         Glide.with(this).load(subbi.getSubprojectPictureURL()).into(view2);
 
+        //map at the bottom
+        MapFragment frg = (MapFragment) getChildFragmentManager().findFragmentById(R.id.map_in_spov);
+        frg.setUp(12, new GeoPoint(54.3232927f,10.1227652f), new de.cau.inf.se.sopro.model.GeoData[]{subbi.getSubprojectGeoData()});
 
 
 
