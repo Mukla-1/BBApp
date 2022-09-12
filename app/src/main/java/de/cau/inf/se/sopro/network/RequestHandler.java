@@ -67,30 +67,26 @@ public class RequestHandler {
      * @param projectID : ID of a project.
      */
     public void updateGroupHeadingMap(MutableLiveData<HashMap<GroupBaseInfoItem, List<HeadingBaseInfoItem>>> ghm, Long projectID){
-        //Map<GroupBaseInfoItem, List<HeadingBaseInfoItem>> map = new Map<GroupBaseInfoItem, List<HeadingBaseInfoItem>>();
-        //HashMap<GroupBaseInfoItem, List<HeadingBaseInfoItem>> hmap = new HashMap<>();
-        //Call callGroups = getGroups(projectID);
-        getGroups(projectID).enqueue(new Callback<List<GroupBaseInfoItem>>() {
+              getGroups(projectID).enqueue(new Callback<List<GroupBaseInfoItem>>() {
             @Override
             public void onResponse(Call<List<GroupBaseInfoItem>> call, Response<List<GroupBaseInfoItem>> response) {
                 if (response.isSuccessful()) {
-                    System.out.println("Anfrage kam durch");
+                    //System.out.println("Anfrage kam durch");
                     //Get all groups as a list.
                     List<GroupBaseInfoItem> groupList = response.body();
                     /*
                     Iterate over all groupitems to make a separate call for each group to get their headings.
                      */
                     for(GroupBaseInfoItem g: groupList){
-                        //Call callHeadings = getHeadings(g.getGroupID());
                         getHeadings(g.getGroupID()).enqueue(new Callback<List<HeadingBaseInfoItem>>() {
                             @Override
                             public void onResponse(Call<List<HeadingBaseInfoItem>> call2, Response<List<HeadingBaseInfoItem>> response2) {
                                 if (response2.isSuccessful()) {
-                                    System.out.println("Unteranfrage kam auch durch");
+                                    //System.out.println("Unteranfrage kam auch durch");
                                     //Get the headings of one groups
                                     List<HeadingBaseInfoItem> headingsList = response2.body();
                                     for(HeadingBaseInfoItem hb:headingsList){
-                                        System.out.println(hb.getHeadingName());
+                                        //System.out.println(hb.getHeadingName());
                                     }
                                     //Add (Group, Headings) to the map
                                     hmap.put(g, headingsList);

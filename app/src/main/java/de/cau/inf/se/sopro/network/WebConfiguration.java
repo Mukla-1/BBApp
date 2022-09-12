@@ -20,8 +20,10 @@ import retrofit2.converter.moshi.MoshiConverterFactory;
 @InstallIn(SingletonComponent.class)
 public class WebConfiguration {
 
+
     private final String BASE_URL_LOCALHOST = "http://localhost:8080";
-    private final String BASE_URL_LOOPBACK_FOR_EMULATOR ="http://134.245.1.240:1502 ";//"http://10.0.2.2:8080";
+    private final String BASE_URL_LOOPBACK_FOR_EMULATOR ="http://134.245.1.240:1502";
+
 
     @Singleton
     @Provides

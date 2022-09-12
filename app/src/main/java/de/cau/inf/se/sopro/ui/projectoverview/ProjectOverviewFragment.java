@@ -45,6 +45,7 @@ public class ProjectOverviewFragment extends Fragment {
 
         Long projectID = this.getArguments().getLong("projectID");
 
+
         NavHostFragment navHostFragment =
                 (NavHostFragment) getActivity().getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment_activity_main);
 
@@ -53,7 +54,7 @@ public class ProjectOverviewFragment extends Fragment {
 
         // create a ViewModel for request handling
         ApiViewModel requestViewModel =
-                new ViewModelProvider(this).get(ApiViewModel.class);
+                new ViewModelProvider(requireActivity()).get(ApiViewModel.class);
 
 
 
@@ -64,7 +65,9 @@ public class ProjectOverviewFragment extends Fragment {
 
         // TODO: nachher wieder entfernen WICHTIG!!!11!!1
 
-        root.findViewById(R.id.temp_button).setOnClickListener(new View.OnClickListener() {
+        
+        binding.tempButton.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View view) {
 

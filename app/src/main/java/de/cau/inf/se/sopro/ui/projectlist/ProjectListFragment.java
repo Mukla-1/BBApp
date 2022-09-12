@@ -37,7 +37,7 @@ public class ProjectListFragment extends Fragment implements ProjectAdapter.List
 
         // create a ViewModel for request handling
         ApiViewModel requestViewModel =
-                new ViewModelProvider(this).get(ApiViewModel.class);
+                new ViewModelProvider(requireActivity()).get(ApiViewModel.class);
 
         // inflate the layout for this fragment
         binding = FragmentProjectListBinding.inflate(inflater, container, false);
