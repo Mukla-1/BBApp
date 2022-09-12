@@ -5,6 +5,7 @@ import static java.util.Arrays.copyOfRange;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentContainerView;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
@@ -55,9 +56,15 @@ public class ProjectOverviewFragment extends Fragment {
                 new ViewModelProvider(this).get(ApiViewModel.class);
 
 
+
+        // Inflate the layout for this fragment
+        binding = FragmentProjectOverviewBinding.inflate(inflater, container, false);
+        View root = binding.getRoot();
+
+
         // TODO: nachher wieder entfernen WICHTIG!!!11!!1
 
-        binding.tempButton.setOnClickListener(new View.OnClickListener() {
+        root.findViewById(R.id.temp_button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
@@ -65,17 +72,18 @@ public class ProjectOverviewFragment extends Fragment {
                 payload.putLong("headingID",11);
                 payload.putString("headingName", " Hallo, Mads hier :D");
                 NavHostFragment.findNavController(ProjectOverviewFragment.this)
-                        .navigate(R.id.action_project_overview_to_subproject_list);
+                        .navigate(R.id.action_project_overview_to_subproject_list,payload);
             }
         });
 
         // TODO: nachher wieder entfernen WICHTIG!!!11!!1
 
+        // TODO: Sehr Nötig
+        Fragment frag = (Fragment) getChildFragmentManager().findFragmentById(R.id.group_list_fragment_container_view);
+        Bundle payload = new Bundle();
+        payload.putLong("projectID",projectID);
+        frag.setArguments(payload);
 
-
-        // Inflate the layout for this fragment
-        binding = FragmentProjectOverviewBinding.inflate(inflater, container, false);
-        View root = binding.getRoot();
 
         // get access to project title + project description text and project image view
         TextView projectTitleView = binding.textViewProjectTitle;

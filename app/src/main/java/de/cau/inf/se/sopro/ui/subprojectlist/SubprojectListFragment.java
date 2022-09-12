@@ -13,12 +13,13 @@ import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import dagger.hilt.android.AndroidEntryPoint;
 import de.cau.inf.se.sopro.ApiViewModel;
 import de.cau.inf.se.sopro.R;
 import de.cau.inf.se.sopro.databinding.FragmentProjectListBinding;
 import de.cau.inf.se.sopro.databinding.FragmentSubprojectListBinding;
 import de.cau.inf.se.sopro.ui.projectlist.ProjectAdapter;
-
+@AndroidEntryPoint
 public class SubprojectListFragment extends Fragment implements SubprojectAdapter.ListItemClickListener {
     private NavController navController;
     private FragmentSubprojectListBinding binding;
@@ -36,7 +37,7 @@ public class SubprojectListFragment extends Fragment implements SubprojectAdapte
 
         // create a ViewModel for request handling
         ApiViewModel requestViewModel =
-                new ViewModelProvider(this).get(ApiViewModel.class);
+                new ViewModelProvider(getActivity()).get(ApiViewModel.class);
 
         // inflate the layout for this fragment
         binding = FragmentSubprojectListBinding.inflate(inflater, container, false);

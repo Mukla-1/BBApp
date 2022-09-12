@@ -81,7 +81,6 @@ public class ProjectListFragment extends Fragment implements ProjectAdapter.List
     public void onListItemClick(long itemID) {
         Bundle payload = new Bundle();
         payload.putLong("projectID", itemID);
-
         // switch fragments
         this.navController.navigate(R.id.action_project_list_to_project_overview, payload);
     }

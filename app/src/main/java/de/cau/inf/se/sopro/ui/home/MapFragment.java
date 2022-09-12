@@ -23,12 +23,13 @@ import org.osmdroid.util.GeoPoint;
 import org.osmdroid.views.MapView;
 import org.osmdroid.views.overlay.Marker;
 
+import dagger.hilt.android.AndroidEntryPoint;
 import de.cau.inf.se.sopro.BuildConfig;
 import de.cau.inf.se.sopro.LoginActivity;
 import de.cau.inf.se.sopro.MainActivity;
 import de.cau.inf.se.sopro.R;
 
-
+@AndroidEntryPoint
 public class MapFragment extends Fragment {
 
     private NavController navController;
@@ -43,11 +44,11 @@ public class MapFragment extends Fragment {
 
         // Connect to the Nav Controller
         NavHostFragment navHostFragment =
-                (NavHostFragment) getActivity().getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment_activity_login);
+                (NavHostFragment) getActivity().getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment_activity_main);
         this.navController = navHostFragment.getNavController();
 
         //load/initialize the osmdroid configuration, this can be done
-        Context ctx = ((LoginActivity)getActivity()).getApplicationContext();
+        Context ctx = ((MainActivity)getActivity()).getApplicationContext();
         Configuration.getInstance().load(ctx, PreferenceManager.getDefaultSharedPreferences(ctx));
 
         // This is necessary to....set Relevant User Agent i think...programming is hard man

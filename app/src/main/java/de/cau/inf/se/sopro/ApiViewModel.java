@@ -3,6 +3,7 @@ package de.cau.inf.se.sopro;
 import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.util.Log;
 
 
 import androidx.lifecycle.MutableLiveData;

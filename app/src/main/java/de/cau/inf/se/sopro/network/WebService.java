@@ -69,7 +69,7 @@ public interface WebService {
     public Call<SubprojectInfoItem> getSubprojectInfo(@Path("subprojectID") Long subprojectID,@Path("userID") String username);
 
     @POST("/app/voteSubproject/{subprojectId}/{userID}")
-    public Call<Boolean> voteSubproject(@Path("subprojectId") Long subprojectID, @Path("userId") String username);
+    public Call<Boolean> voteSubproject(@Path("subprojectId") Long subprojectID, @Path("userID") String username);
 
 
     /*

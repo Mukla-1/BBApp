@@ -12,13 +12,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import dagger.hilt.android.AndroidEntryPoint;
 import de.cau.inf.se.sopro.ApiViewModel;
 import de.cau.inf.se.sopro.R;
 import de.cau.inf.se.sopro.databinding.FragmentGroupListBinding;
 import de.cau.inf.se.sopro.databinding.FragmentHeadingListBinding;
 import de.cau.inf.se.sopro.ui.projectoverview.headinglist.HeadingAdapter;
 
-
+@AndroidEntryPoint
 public class GroupListFragment extends Fragment {
 
     private FragmentGroupListBinding binding;
@@ -29,7 +30,7 @@ public class GroupListFragment extends Fragment {
         super.onCreate(savedInstanceState);
 
         // get projectID from
-        Long projectID = savedInstanceState.getLong("projectID");
+        Long projectID = getArguments().getLong("projectID");
 
         // create a ViewModel for request handling
         ApiViewModel requestViewModel =
