@@ -57,9 +57,14 @@ public class SubprojectOverviewFragment extends Fragment {
             this.upDateSubbi();
 
         });
+
+
+
+
+
         //für Nachricht an Benutzer, dass Vote abgegeben wurde
         final TextView txtview = view.findViewById(R.id.textView3);
-        txtview.setText("Hier können sie ihr Vote für das Unterprojekt abgeben!");
+        txtview.setText("Hier können Sie Ihr Vote für das Unterprojekt abgeben!");
 
         // für ein Unterprojekt voten
         Button button = (Button) view.findViewById(R.id.vote_button);
@@ -68,23 +73,30 @@ public class SubprojectOverviewFragment extends Fragment {
             public void onClick(View v) {
 
                 requestViewModel.voteSubproject(id);
-
+                updateText("Ihr Vote wurde abgeschickt!");
                 requestViewModel.get_subprojectVoteSuccess().observe(getViewLifecycleOwner(), votesucces -> {
+                    /**
                     //vote ist durchgegangen oder nicht
                     if (votesucces){
-                        txtview.setText("Sie haben erfolgreich für das Projekt gevotet!");
+                        updateText("Sie haben erfolgreich für das Projekt gevotet!");
                     }
                     else {
-                        txtview.setText("Etwas ist beim voten schiefgelaufen! :(");
-                    }
+                        updateText("Etwas ist beim voten schiefgelaufen! :(");
+                    }*/
                 });
 
 
             }
         });
 
-        return view;
+       return view;
 
+
+    }
+
+    private void updateText(String txt){
+        final TextView txtview = view.findViewById(R.id.textView3);
+        txtview.setText(txt);
 
     }
 
@@ -93,6 +105,9 @@ public class SubprojectOverviewFragment extends Fragment {
         final TextView txtview2 = view.findViewById(R.id.textView2);
         txtview2.setText(subbi.getSubprojectDescription());
 
+        // Subprojekttitel einfügen
+        final TextView title = view.findViewById(R.id.subtitle);
+        title.setText(subbi.getSubprojectName());
 
         //navigieren
         NavHostFragment navHostFragment =
