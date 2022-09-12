@@ -124,7 +124,7 @@ public class SubprojectOverviewFragment extends Fragment {
 
         //map at the bottom
         MapFragment frg = (MapFragment) getChildFragmentManager().findFragmentById(R.id.map_in_spov);
-        frg.setUp(12, new GeoPoint(54.3232927f,10.1227652f), new de.cau.inf.se.sopro.model.GeoData[]{subbi.getSubprojectGeoData()});
+        frg.setUp(17, new GeoPoint(subbi.getSubprojectGeoData().getLatitude(), subbi.getSubprojectGeoData().getLongitude()), new de.cau.inf.se.sopro.model.GeoData[]{subbi.getSubprojectGeoData()});
 
 
 

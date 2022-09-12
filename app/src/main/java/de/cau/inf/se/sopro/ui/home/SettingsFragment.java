@@ -1,5 +1,6 @@
 package de.cau.inf.se.sopro.ui.home;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;

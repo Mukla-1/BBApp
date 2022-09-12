@@ -1,5 +1,6 @@
 package de.cau.inf.se.sopro.ui.home;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -51,6 +52,8 @@ public class LoginFragment extends Fragment {
 
         // Api stuff setup
         dashboardViewModel = new ViewModelProvider(this).get(ApiViewModel.class);
+        // on first create, set shared preferences in the ApiViewModel
+        ApiViewModel.setSharedPreferences(getActivity().getSharedPreferences("Persistence", Context.MODE_PRIVATE));
         dashboardViewModel.get_loginValid().observe(getViewLifecycleOwner(),b -> onLoginUpdate(b));
         dashboardViewModel.get_userAddedSuccess().observe(getViewLifecycleOwner(),b -> onRegisterUpdate(b));
 

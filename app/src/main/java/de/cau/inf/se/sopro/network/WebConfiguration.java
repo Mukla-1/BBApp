@@ -47,6 +47,4 @@ public class WebConfiguration {
                 .create(WebService.class);
     }
 
-
-
 }
