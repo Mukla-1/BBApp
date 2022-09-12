@@ -57,28 +57,6 @@ public class SubprojectOverviewFragment extends Fragment {
             this.upDateSubbi();
 
         });
-
-
-        return view;
-
-
-    }
-
-    private void upDateSubbi() {
-        //Beschriftung einfügen
-        final TextView txtview2 = view.findViewById(R.id.textView2);
-        txtview2.setText(subbi.getSubprojectDescription());
-
-
-        //navigieren
-        NavHostFragment navHostFragment =
-                (NavHostFragment) getActivity().getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment_activity_main);
-        navController = navHostFragment.getNavController();
-
-        ImageView view2 = view.findViewById(R.id.imageView);
-        Glide.with(this).load(subbi.getSubprojectPictureURL()).into(view2);
-
-
         //für Nachricht an Benutzer, dass Vote abgegeben wurde
         final TextView txtview = view.findViewById(R.id.textView3);
         txtview.setText("Hier können sie ihr Vote für das Unterprojekt abgeben!");
@@ -104,6 +82,30 @@ public class SubprojectOverviewFragment extends Fragment {
 
             }
         });
+
+        return view;
+
+
+    }
+
+    private void upDateSubbi() {
+        //Beschriftung einfügen
+        final TextView txtview2 = view.findViewById(R.id.textView2);
+        txtview2.setText(subbi.getSubprojectDescription());
+
+
+        //navigieren
+        NavHostFragment navHostFragment =
+                (NavHostFragment) getActivity().getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment_activity_main);
+        navController = navHostFragment.getNavController();
+
+        ImageView view2 = view.findViewById(R.id.imageView);
+        Glide.with(this).load(subbi.getSubprojectPictureURL()).into(view2);
+
+
+
+
+
 
     }
 
