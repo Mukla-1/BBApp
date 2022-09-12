@@ -105,6 +105,7 @@ public class SubprojectOverviewFragment extends Fragment {
         final TextView txtview2 = view.findViewById(R.id.textView2);
         txtview2.setText(subbi.getSubprojectDescription());
 
+
         // Subprojekttitel einfügen
         final TextView title = view.findViewById(R.id.subtitle);
         title.setText(subbi.getSubprojectName());
