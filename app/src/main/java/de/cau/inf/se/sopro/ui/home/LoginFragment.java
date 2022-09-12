@@ -83,7 +83,7 @@ public class LoginFragment extends Fragment {
         if(success){
             switchActivity(un,pw);
         }else{
-            text_hint.setText("Es geschah ein Fehlschlag. Bitte versuchen sie es erneut ");
+            text_hint.setText(R.string.login_error_message);
         }
     }
 
@@ -91,7 +91,7 @@ public class LoginFragment extends Fragment {
         if(success){
             switchActivity(un,pw);
         }else{
-            text_hint.setText("Es geschah ein Fehlschlag. Bitte versuchen sie es erneut ");
+            text_hint.setText(R.string.register_error_message);
         }
     }
 
@@ -103,7 +103,7 @@ public class LoginFragment extends Fragment {
         pw = text_password.getText().toString();
         // Check for Empty
         if(un.isEmpty() || pw.isEmpty()){
-            text_hint.setText("Name und Passwort dürfen nicht leer sein");
+            text_hint.setText(R.string.empty_fields_error_message);
             return;
         }
         dashboardViewModel.validateLogin(un,pw);

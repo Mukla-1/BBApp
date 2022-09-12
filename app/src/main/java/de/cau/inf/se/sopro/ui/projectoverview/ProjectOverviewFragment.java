@@ -95,6 +95,9 @@ public class ProjectOverviewFragment extends Fragment {
         TextView projectDescriptionView = binding.descriptionTextView;
         ImageView projectImageView = binding.imageViewProjectImage;
 
+        // initialize the map fragment
+        MapFragment map = (MapFragment) getChildFragmentManager().findFragmentById(R.id.map_in_project_overview);
+
 
         // send a request to get all project information from Web API
         requestViewModel.getProjectInfo(projectID);
@@ -117,9 +120,8 @@ public class ProjectOverviewFragment extends Fragment {
                 Glide.with(this).load(pictureURL).into(projectImageView);
 
             }
-            // TODO: Nadeln auf Map einfügen (GeoData[] aus projectInfoItem)
-            MapFragment frg = (MapFragment) getChildFragmentManager().findFragmentById(R.id.fragmentContainerView2);
-            frg.setUp(12, new GeoPoint(54.3232927f,10.1227652f),projectInfoItem.getProjectGeoData());
+            // insert pointers into the map
+            map.setUp(12, new GeoPoint(54.3232927f,10.1227652f),projectInfoItem.getProjectGeoData());
 
         });
 

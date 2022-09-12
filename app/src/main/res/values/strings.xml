@@ -19,4 +19,8 @@
     <string name="vote">Vote jetzt!</string>
     <string name="defaultURL">"134.245.1.240"</string>
 
+    <string name="login_error_message">"Nutzername und Passwort stimmen nicht überein."</string>
+    <string name="register_error_message">"Dieser Nutzername ist leider schon vergeben."</string>
+    <string name="empty_fields_error_message">"Name und Passwort dürfen nicht leer sein."</string>
+
 </resources>

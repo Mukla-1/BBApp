@@ -13,11 +13,16 @@ import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import org.osmdroid.util.GeoPoint;
+
 import dagger.hilt.android.AndroidEntryPoint;
 import de.cau.inf.se.sopro.ApiViewModel;
 import de.cau.inf.se.sopro.R;
 import de.cau.inf.se.sopro.databinding.FragmentProjectListBinding;
 import de.cau.inf.se.sopro.databinding.FragmentSubprojectListBinding;
+import de.cau.inf.se.sopro.model.GeoData;
+import de.cau.inf.se.sopro.model.SubprojectBaseInfoItem;
+import de.cau.inf.se.sopro.ui.home.MapFragment;
 import de.cau.inf.se.sopro.ui.projectlist.ProjectAdapter;
 @AndroidEntryPoint
 public class SubprojectListFragment extends Fragment implements SubprojectAdapter.ListItemClickListener {
@@ -46,6 +51,9 @@ public class SubprojectListFragment extends Fragment implements SubprojectAdapte
         // rename heading title
         binding.subprojectListTitle.setText(headingName);
 
+        // initialize the map
+        MapFragment map = (MapFragment) getChildFragmentManager().findFragmentById(R.id.map_in_subproject_list);
+
         // get access to recyclerView and set some layout settings
         RecyclerView recyclerView = binding.subprojectItemRecyclerView;
         recyclerView.setLayoutManager(new LinearLayoutManager(root.getContext()));
@@ -62,6 +70,15 @@ public class SubprojectListFragment extends Fragment implements SubprojectAdapte
         requestViewModel.get_subprojects().observe(getViewLifecycleOwner(), subprojects -> {
             // define what to do with the subprojects, which is to update the adapter
             adapter.setSubprojects(subprojects);
+
+            // also, insert pointers into the map
+            // for that, first create a list of all GeoData-objects from the SubprojectBaseInfoItems
+            GeoData[] subprojectGeoData = new GeoData[subprojects.size()];
+            for (int i = 0; i < subprojects.size(); i++) {
+                subprojectGeoData[i] = subprojects.get(i).getSubprojectGeoData();
+            }
+            // then, set up the map with these locations
+            map.setUp(12, new GeoPoint(54.3232927f,10.1227652f), subprojectGeoData);
         });
 
         // Connect to the Nav Controller
