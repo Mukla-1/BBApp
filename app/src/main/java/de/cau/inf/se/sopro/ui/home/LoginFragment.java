@@ -2,6 +2,7 @@ package de.cau.inf.se.sopro.ui.home;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,6 +21,7 @@ import de.cau.inf.se.sopro.ApiViewModel;
 import de.cau.inf.se.sopro.LoginActivity;
 import de.cau.inf.se.sopro.MainActivity;
 import de.cau.inf.se.sopro.R;
+import de.cau.inf.se.sopro.model.ProjectBaseInfoItem;
 
 @AndroidEntryPoint
 public class LoginFragment extends Fragment {
@@ -70,11 +72,14 @@ public class LoginFragment extends Fragment {
         text_password = view2.findViewById(R.id.password);
         text_hint = view2.findViewById(R.id.output);
 
+
         return view2;
+
     }
 
 
     public void onLoginUpdate(Boolean success){
+
         if(success){
             switchActivity(un,pw);
         }else{
@@ -92,7 +97,7 @@ public class LoginFragment extends Fragment {
 
 
 
-    protected  void onLoginButtonClick(){
+    protected void onLoginButtonClick(){
         // Get User Information
         un = text_username.getText().toString();
         pw = text_password.getText().toString();
@@ -102,7 +107,6 @@ public class LoginFragment extends Fragment {
             return;
         }
         dashboardViewModel.validateLogin(un,pw);
-
     }
 
     protected void onRegisterButtonClick(){

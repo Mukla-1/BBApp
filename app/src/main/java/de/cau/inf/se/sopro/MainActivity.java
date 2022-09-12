@@ -22,7 +22,7 @@ import dagger.hilt.android.AndroidEntryPoint;
 import de.cau.inf.se.sopro.databinding.ActivityMainBinding;
 import de.cau.inf.se.sopro.ui.projectoverview.ProjectOverviewFragment;
 
-
+@AndroidEntryPoint
 public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding binding;
@@ -37,8 +37,9 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        navController = Navigation.findNavController(this, R.id.nav_host_fragment_activity_main);
 
+        //navController = Navigation.findNavController(this, R.id.nav_host_fragment_activity_main);
+          navController = Navigation.findNavController(this,R.id.nav_host_fragment_activity_main);
 
         Activity actimel = this;
 

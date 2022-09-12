@@ -15,6 +15,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import dagger.hilt.android.AndroidEntryPoint;
 import de.cau.inf.se.sopro.ApiViewModel;
 import de.cau.inf.se.sopro.R;
 import de.cau.inf.se.sopro.databinding.FragmentProjectListBinding;
@@ -24,6 +25,7 @@ import de.cau.inf.se.sopro.databinding.FragmentProjectListBinding;
  * Fragment that shows a list of all projects from the database. Each project is displayed with its
  * name in a single list item, which are {@link ProjectItem}s.
  */
+@AndroidEntryPoint
 public class ProjectListFragment extends Fragment implements ProjectAdapter.ListItemClickListener {
     private NavController navController;
     private FragmentProjectListBinding binding;
@@ -35,7 +37,7 @@ public class ProjectListFragment extends Fragment implements ProjectAdapter.List
 
         // create a ViewModel for request handling
         ApiViewModel requestViewModel =
-                new ViewModelProvider(this).get(ApiViewModel.class);
+                new ViewModelProvider(requireActivity()).get(ApiViewModel.class);
 
         // inflate the layout for this fragment
         binding = FragmentProjectListBinding.inflate(inflater, container, false);
@@ -62,7 +64,7 @@ public class ProjectListFragment extends Fragment implements ProjectAdapter.List
 
         // Connect to the Nav Controller
         NavHostFragment navHostFragment =
-                (NavHostFragment) getActivity().getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment_activity_login);
+                (NavHostFragment) getActivity().getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment_activity_main);
         this.navController = navHostFragment.getNavController();
 
 
@@ -79,7 +81,6 @@ public class ProjectListFragment extends Fragment implements ProjectAdapter.List
     public void onListItemClick(long itemID) {
         Bundle payload = new Bundle();
         payload.putLong("projectID", itemID);
-
         // switch fragments
         this.navController.navigate(R.id.action_project_list_to_project_overview, payload);
     }

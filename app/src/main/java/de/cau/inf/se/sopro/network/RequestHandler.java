@@ -4,15 +4,13 @@ import android.util.Log;
 
 import androidx.lifecycle.MutableLiveData;
 
+
+
+import java.util.HashMap;
 import java.util.List;
 
 import javax.inject.Inject;
-import javax.inject.Singleton;
 
-import dagger.Module;
-import dagger.Provides;
-import dagger.hilt.InstallIn;
-import dagger.hilt.components.SingletonComponent;
 import de.cau.inf.se.sopro.model.CommentInfoItem;
 import de.cau.inf.se.sopro.model.GroupBaseInfoItem;
 import de.cau.inf.se.sopro.model.HeadingBaseInfoItem;
@@ -21,8 +19,6 @@ import de.cau.inf.se.sopro.model.ProjectBaseInfoItem;
 import de.cau.inf.se.sopro.model.ProjectInfoItem;
 import de.cau.inf.se.sopro.model.SubprojectBaseInfoItem;
 import de.cau.inf.se.sopro.model.SubprojectInfoItem;
-import io.reactivex.rxjava3.core.Completable;
-import io.reactivex.rxjava3.core.Single;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -35,6 +31,7 @@ import retrofit2.Response;
 public class RequestHandler {
 
     private final WebService webService;
+    HashMap<GroupBaseInfoItem, List<HeadingBaseInfoItem>> hmap = new HashMap<>();
 
     @Inject
     public RequestHandler(WebService webService) {
@@ -62,6 +59,58 @@ public class RequestHandler {
                 Log.e("SoPro", "Could not reach backend", t);
             }
         });
+    }
+
+    /**
+     * Updates the map of all groups and their headings.
+     * @param ghm : The LiveData map containing the (group, headings)-Pairs.
+     * @param projectID : ID of a project.
+     */
+    public void updateGroupHeadingMap(MutableLiveData<HashMap<GroupBaseInfoItem, List<HeadingBaseInfoItem>>> ghm, Long projectID){
+              getGroups(projectID).enqueue(new Callback<List<GroupBaseInfoItem>>() {
+            @Override
+            public void onResponse(Call<List<GroupBaseInfoItem>> call, Response<List<GroupBaseInfoItem>> response) {
+                if (response.isSuccessful()) {
+                    //System.out.println("Anfrage kam durch");
+                    //Get all groups as a list.
+                    List<GroupBaseInfoItem> groupList = response.body();
+                    /*
+                    Iterate over all groupitems to make a separate call for each group to get their headings.
+                     */
+                    for(GroupBaseInfoItem g: groupList){
+                        getHeadings(g.getGroupID()).enqueue(new Callback<List<HeadingBaseInfoItem>>() {
+                            @Override
+                            public void onResponse(Call<List<HeadingBaseInfoItem>> call2, Response<List<HeadingBaseInfoItem>> response2) {
+                                if (response2.isSuccessful()) {
+                                    //System.out.println("Unteranfrage kam auch durch");
+                                    //Get the headings of one groups
+                                    List<HeadingBaseInfoItem> headingsList = response2.body();
+                                    for(HeadingBaseInfoItem hb:headingsList){
+                                        //System.out.println(hb.getHeadingName());
+                                    }
+                                    //Add (Group, Headings) to the map
+                                    hmap.put(g, headingsList);
+                                    //ATTENTION, this causes the ghm to update very often, but currently
+                                    //I have no better solution.
+                                    ghm.setValue(hmap);
+
+
+                                                                    }
+                            }
+                            @Override
+                            public void onFailure(Call<List<HeadingBaseInfoItem>> call, Throwable t) {
+                                Log.e("SoPro", "Could not reach backend", t);
+                            }
+                        });
+                    }
+                }
+            }
+            @Override
+            public void onFailure(Call<List<GroupBaseInfoItem>> call, Throwable t) {
+                Log.e("SoPro", "Could not reach backend", t);
+            }
+        });
+
     }
 
     /**
@@ -192,7 +241,7 @@ public class RequestHandler {
         return webService.getSubcomments(commentID, username);
     }
 
- 
+
     /**
      * Casts a vote on a subproject from the user's account.
      * In the forwarded method call, the username is propagated to save the name of the voting
