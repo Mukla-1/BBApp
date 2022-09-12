@@ -137,6 +137,7 @@ public class ProjectOverviewFragment extends Fragment {
 
                     phases = Arrays.copyOfRange(phases, 0, 5);
                 }
+                projectProgressBar.setMaxStateNumber(intToStateNumber(phases.length));
                 projectProgressBar.setStateDescriptionData(phases);
             }
             // update active phase
@@ -147,32 +148,30 @@ public class ProjectOverviewFragment extends Fragment {
                 activePhase = 4;
             }
             // set active phase
-            switch (activePhase) {
-                case 0:
-                    projectProgressBar.setCurrentStateNumber(StateProgressBar.StateNumber.ONE);
-                    break;
-                case 1:
-                    projectProgressBar.setCurrentStateNumber(StateProgressBar.StateNumber.TWO);
-                    break;
-                case 2:
-                    projectProgressBar.setCurrentStateNumber(StateProgressBar.StateNumber.THREE);
-                    break;
-                case 3:
-                    projectProgressBar.setCurrentStateNumber(StateProgressBar.StateNumber.FOUR);
-                    break;
-                case 4:
-                    projectProgressBar.setCurrentStateNumber(StateProgressBar.StateNumber.FIVE);
-                    break;
-                default:
-                    // should not happen anyways
-                    projectProgressBar.setAllStatesCompleted(true);
-                    break;
-            }
+            projectProgressBar.setCurrentStateNumber(intToStateNumber(activePhase + 1));
         });
         return root;
     }
 
-
+    /**
+     * Converts an int into its corresponding StateNumber needed for
+     * @param n the integer to convert
+     * @return the corresponding StateNumber
+     */
+    private StateProgressBar.StateNumber intToStateNumber(int n) {
+        switch (n) {
+            case 1:
+                return StateProgressBar.StateNumber.ONE;
+            case 2:
+                return StateProgressBar.StateNumber.TWO;
+            case 3:
+                return StateProgressBar.StateNumber.THREE;
+            case 4:
+                return StateProgressBar.StateNumber.FOUR;
+            default:
+                return StateProgressBar.StateNumber.FIVE;
+        }
+    }
 
 
     @Override
