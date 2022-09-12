@@ -20,6 +20,8 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.kofigyan.stateprogressbar.StateProgressBar;
 
+import org.osmdroid.util.GeoPoint;
+
 import java.util.Arrays;
 
 import dagger.hilt.android.AndroidEntryPoint;
@@ -27,6 +29,7 @@ import de.cau.inf.se.sopro.ApiViewModel;
 import de.cau.inf.se.sopro.R;
 import de.cau.inf.se.sopro.databinding.FragmentProjectListBinding;
 import de.cau.inf.se.sopro.databinding.FragmentProjectOverviewBinding;
+import de.cau.inf.se.sopro.ui.home.MapFragment;
 
 /**
  * Fragment that gives an overview to a project. This includes a title, picture, phase-overview,
@@ -65,7 +68,6 @@ public class ProjectOverviewFragment extends Fragment {
 
         // TODO: nachher wieder entfernen WICHTIG!!!11!!1
 
-        
         binding.tempButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -116,6 +118,9 @@ public class ProjectOverviewFragment extends Fragment {
 
             }
             // TODO: Nadeln auf Map einfügen (GeoData[] aus projectInfoItem)
+            MapFragment frg = (MapFragment) getChildFragmentManager().findFragmentById(R.id.fragmentContainerView2);
+            frg.setUp(12, new GeoPoint(54.3232927f,10.1227652f),projectInfoItem.getProjectGeoData());
+
         });
 
         // get access to the progress bar
@@ -137,6 +142,7 @@ public class ProjectOverviewFragment extends Fragment {
 
                     phases = Arrays.copyOfRange(phases, 0, 5);
                 }
+                projectProgressBar.setMaxStateNumber(intToStateNumber(phases.length));
                 projectProgressBar.setStateDescriptionData(phases);
             }
             // update active phase
@@ -147,32 +153,30 @@ public class ProjectOverviewFragment extends Fragment {
                 activePhase = 4;
             }
             // set active phase
-            switch (activePhase) {
-                case 0:
-                    projectProgressBar.setCurrentStateNumber(StateProgressBar.StateNumber.ONE);
-                    break;
-                case 1:
-                    projectProgressBar.setCurrentStateNumber(StateProgressBar.StateNumber.TWO);
-                    break;
-                case 2:
-                    projectProgressBar.setCurrentStateNumber(StateProgressBar.StateNumber.THREE);
-                    break;
-                case 3:
-                    projectProgressBar.setCurrentStateNumber(StateProgressBar.StateNumber.FOUR);
-                    break;
-                case 4:
-                    projectProgressBar.setCurrentStateNumber(StateProgressBar.StateNumber.FIVE);
-                    break;
-                default:
-                    // should not happen anyways
-                    projectProgressBar.setAllStatesCompleted(true);
-                    break;
-            }
+            projectProgressBar.setCurrentStateNumber(intToStateNumber(activePhase + 1));
         });
         return root;
     }
 
-
+    /**
+     * Converts an int into its corresponding StateNumber needed for
+     * @param n the integer to convert
+     * @return the corresponding StateNumber
+     */
+    private StateProgressBar.StateNumber intToStateNumber(int n) {
+        switch (n) {
+            case 1:
+                return StateProgressBar.StateNumber.ONE;
+            case 2:
+                return StateProgressBar.StateNumber.TWO;
+            case 3:
+                return StateProgressBar.StateNumber.THREE;
+            case 4:
+                return StateProgressBar.StateNumber.FOUR;
+            default:
+                return StateProgressBar.StateNumber.FIVE;
+        }
+    }
 
 
     @Override

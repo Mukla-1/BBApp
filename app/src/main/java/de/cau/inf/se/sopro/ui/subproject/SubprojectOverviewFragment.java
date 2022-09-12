@@ -68,7 +68,7 @@ public class SubprojectOverviewFragment extends Fragment {
 
         // für ein Unterprojekt voten
         Button button = (Button) view.findViewById(R.id.vote_button);
-        button.setOnClickListener(new View.OnClickListener() {
+        button.setOnClickListener(new View.OnClickListener()  {
             @Override
             public void onClick(View v) {
 
