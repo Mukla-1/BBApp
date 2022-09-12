@@ -20,6 +20,8 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.kofigyan.stateprogressbar.StateProgressBar;
 
+import org.osmdroid.util.GeoPoint;
+
 import java.util.Arrays;
 
 import dagger.hilt.android.AndroidEntryPoint;
@@ -27,6 +29,7 @@ import de.cau.inf.se.sopro.ApiViewModel;
 import de.cau.inf.se.sopro.R;
 import de.cau.inf.se.sopro.databinding.FragmentProjectListBinding;
 import de.cau.inf.se.sopro.databinding.FragmentProjectOverviewBinding;
+import de.cau.inf.se.sopro.ui.home.MapFragment;
 
 /**
  * Fragment that gives an overview to a project. This includes a title, picture, phase-overview,
@@ -65,7 +68,6 @@ public class ProjectOverviewFragment extends Fragment {
 
         // TODO: nachher wieder entfernen WICHTIG!!!11!!1
 
-        
         binding.tempButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -116,6 +118,9 @@ public class ProjectOverviewFragment extends Fragment {
 
             }
             // TODO: Nadeln auf Map einfügen (GeoData[] aus projectInfoItem)
+            MapFragment frg = (MapFragment) getChildFragmentManager().findFragmentById(R.id.fragmentContainerView2);
+            frg.setUp(12, new GeoPoint(54.3232927f,10.1227652f),projectInfoItem.getProjectGeoData());
+
         });
 
         // get access to the progress bar

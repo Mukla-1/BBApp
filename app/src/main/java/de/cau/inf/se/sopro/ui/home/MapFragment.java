@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -28,6 +29,7 @@ import de.cau.inf.se.sopro.BuildConfig;
 import de.cau.inf.se.sopro.LoginActivity;
 import de.cau.inf.se.sopro.MainActivity;
 import de.cau.inf.se.sopro.R;
+import de.cau.inf.se.sopro.model.GeoData;
 
 @AndroidEntryPoint
 public class MapFragment extends Fragment {
@@ -73,42 +75,46 @@ public class MapFragment extends Fragment {
 
 
 
-        // get passed in arguments
+        // get passed in arguments (if they exist)
         Bundle b = this.getArguments();
-        // Do we need the Return action
-        if (b.get("returnAction")  != null){
-            returnAction = (Integer) b.get("returnAction");
+        if(b != null) {
+            // Do we need the Return action
+            if (b.get("returnAction") != null) {
+                returnAction = (Integer) b.get("returnAction");
+            } else {
+                // Disable back button if used as Subfragment
+                button_back.setEnabled(false);
+                button_back.setClickable(false);
+                button_back.setVisibility(View.INVISIBLE);
+            }
+
+            // Somehow do Setup
+            IMapController mapController = map.getController();
+            if (b.get("startZoom") == null) {
+                mapController.setZoom(12);
+            } else {
+                mapController.setZoom((int) b.get("startZoom"));
+            }
+            GeoPoint startPoint;
+            if (b.get("startLatitude") != null && b.get("startLongitude") != null) {
+                startPoint = new GeoPoint((Float) b.get("startLatitude"), (Float) b.get("startLongitude"));
+            } else {
+                startPoint = new GeoPoint(0, 0);
+            }
+            mapController.setCenter(startPoint);
+            // Put Down Markers
+            Float[] mLat = (Float[]) b.get("markersLatitude");
+            Float[] mLng = (Float[]) b.get("markersLongitude");
+            String[] mTxt = (String[]) b.get("markersText");
+            // Check for Potential errors
+            if (!mLat.equals(null) && !mLng.equals(null) && !mTxt.equals(null)) {
+                addMarkers(mLat, mLng, mTxt);
+            }
         }else{
-            // Disable back button if used as Subfragment
             button_back.setEnabled(false);
             button_back.setClickable(false);
             button_back.setVisibility(View.INVISIBLE);
         }
-
-
-        // Somehow do Setup
-        IMapController mapController = map.getController();
-        if(b.get("startZoom") == null){
-            mapController.setZoom(12);
-        }else{
-            mapController.setZoom((int) b.get("startZoom"));
-        }
-        GeoPoint startPoint;
-        if(b.get("startLatitude") != null && b.get("startLongitude") != null) {
-            startPoint = new GeoPoint((Float) b.get("startLatitude"), (Float) b.get("startLongitude"));
-        }else{
-            startPoint = new GeoPoint(0,0);
-        }
-        mapController.setCenter(startPoint);
-        // Put Down Markers
-        Float[] mLat = (Float[]) b.get("markersLatitude");
-        Float[] mLng = (Float[]) b.get("markersLongitude");
-        String[] mTxt = (String[]) b.get("markersText");
-        // Check for Potential errors
-        if(!mLat.equals(null) && !mLng.equals(null) && !mTxt.equals(null)){
-            addMarkers(mLat,mLng,mTxt);
-        }
-
         return view2;
 
     }
@@ -117,6 +123,25 @@ public class MapFragment extends Fragment {
         Bundle payload = new Bundle();
         this.navController.navigate(returnAction, payload);
     }
+
+    public void setUp(int startZoom, GeoPoint startPoint, GeoData[] points){
+        // Somehow do Setup
+        IMapController mapController = map.getController();
+
+        mapController.setZoom(startZoom);
+        mapController.setCenter(startPoint);
+        for(int j = 0;j < points.length;j++){
+            Marker marker = new Marker(map);
+            marker.setPosition(new GeoPoint(points[j].getLatitude(),points[j].getLongitude()));
+            marker.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM);
+            marker.setTitle(points[j].getName());
+            //marker.setIcon(getResources().getDrawable(R.drawable.ic_launcher));
+            map.getOverlays().add(marker);
+        }
+    }
+
+
+
 
     // Create Markers on the Map
     private void addMarkers(Float[] lats,Float[] lngs,String[] ts){
