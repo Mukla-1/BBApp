@@ -19,6 +19,8 @@ import dagger.hilt.android.AndroidEntryPoint;
 import de.cau.inf.se.sopro.ApiViewModel;
 import de.cau.inf.se.sopro.LoginActivity;
 import de.cau.inf.se.sopro.R;
+import de.cau.inf.se.sopro.network.WebConfiguration;
+
 @AndroidEntryPoint
 public class SettingsFragment extends Fragment {
 
@@ -79,11 +81,17 @@ public class SettingsFragment extends Fragment {
             success.setText("URL darf nicht leer sein!");
             return;
         }
-        dashboardViewModel.setCurrentURL(newRL);
-        // Display Success or Failure message
-        success.setText("Applied new URL");
 
-
+        WebConfiguration.changeUrl(newRL);
+        WebConfiguration._validUrl.observe(getViewLifecycleOwner(), flag -> {
+            // Display Success or Failure message
+            if(flag){
+                success.setText("Neue URL wird benutzt.");
+            }
+            else{
+                success.setText("URL funktioniert nicht.");
+            }
+        });
     }
 
 
