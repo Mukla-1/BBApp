@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -114,7 +115,19 @@ public class MapFragment extends Fragment {
             button_back.setEnabled(false);
             button_back.setClickable(false);
             button_back.setVisibility(View.INVISIBLE);
+
+
         }
+
+        view2.findViewById(R.id.empty_image).setOnTouchListener((v, event) -> {
+            Log.v("rush b","FUCK MY LIFE. WHY IST THIS WORKING !?!?!111");
+            view2.getParent().requestDisallowInterceptTouchEvent(true);
+            return view2.onTouchEvent(event);
+        });
+
+
+
+
         return view2;
 
     }

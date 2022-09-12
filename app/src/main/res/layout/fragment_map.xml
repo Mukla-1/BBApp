@@ -13,6 +13,7 @@
         android:text="Back"
         tools:ignore="MissingConstraints" />
 
+
     <org.osmdroid.views.MapView
         android:id="@+id/map"
         android:layout_width="fill_parent"
@@ -22,9 +23,14 @@
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0">
+        app:layout_constraintVertical_bias="1.0">
+
 
     </org.osmdroid.views.MapView>
 
+    <ImageView
+        android:id="@+id/empty_image"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
