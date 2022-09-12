@@ -72,7 +72,7 @@
             android:id="@+id/group_list_fragment_container_view"
             android:name="de.cau.inf.se.sopro.ui.projectoverview.grouplist.GroupListFragment"
             android:layout_width="400dp"
-            android:layout_height="400dp"
+            android:layout_height="300dp"
             android:layout_marginTop="20dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
