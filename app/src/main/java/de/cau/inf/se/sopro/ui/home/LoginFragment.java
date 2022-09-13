@@ -2,6 +2,7 @@ package de.cau.inf.se.sopro.ui.home;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -23,6 +24,7 @@ import de.cau.inf.se.sopro.LoginActivity;
 import de.cau.inf.se.sopro.MainActivity;
 import de.cau.inf.se.sopro.R;
 import de.cau.inf.se.sopro.model.ProjectBaseInfoItem;
+import de.cau.inf.se.sopro.network.WebConfiguration;
 
 @AndroidEntryPoint
 public class LoginFragment extends Fragment {
@@ -53,7 +55,14 @@ public class LoginFragment extends Fragment {
         // Api stuff setup
         dashboardViewModel = new ViewModelProvider(this).get(ApiViewModel.class);
         // on first create, set shared preferences in the ApiViewModel
-        ApiViewModel.setSharedPreferences(getActivity().getSharedPreferences("Persistence", Context.MODE_PRIVATE));
+        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("Persistence", Context.MODE_PRIVATE);
+        ApiViewModel.setSharedPreferences(sharedPreferences);
+        // then, read the persistent url and set it in the ApiViewModel
+        String currentURL = sharedPreferences.getString("baseURL", "http://134.245.1.240:1502");
+        dashboardViewModel.setCurrentURL(currentURL);
+        // also, change it for the WebConfiguration
+        WebConfiguration.changeUrl(currentURL);
+
         dashboardViewModel.get_loginValid().observe(getViewLifecycleOwner(),b -> onLoginUpdate(b));
         dashboardViewModel.get_userAddedSuccess().observe(getViewLifecycleOwner(),b -> onRegisterUpdate(b));
 

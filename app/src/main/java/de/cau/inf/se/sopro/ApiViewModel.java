@@ -33,11 +33,12 @@ import de.cau.inf.se.sopro.network.RequestHandler;
 @HiltViewModel
 public class ApiViewModel extends ViewModel {
 
-    // static so that each instance of ApiViewModel has the name saved once it is set via login
+    // static so that each instance of ApiViewModel has the data saved once it is set via login
     private static String username;
-    private String currentURL;
+    private static String currentURL;
 
-    // shared preferences file to save URL persistent, static so that it can be set once in the settings fragment and is maintained in all instances of ApiViewModels
+    // shared preferences file to save URL persistent, static so that it can be set once
+    // in the settings fragment and is maintained in all instances of ApiViewModels
     private static SharedPreferences sharedPreferences;
 
     private RequestHandler requestHandler;
@@ -304,7 +305,7 @@ public class ApiViewModel extends ViewModel {
     }
 
     public void setCurrentURL(String newURL) {
-        currentURL = newURL;
+        ApiViewModel.currentURL = newURL;
         // also save persistent
         saveURLPersistent(newURL);
     }
