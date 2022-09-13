@@ -67,7 +67,7 @@ public class SubprojectOverviewFragment extends Fragment {
 
         //für Nachricht an Benutzer, dass Vote abgegeben wurde
         final TextView txtview = view.findViewById(R.id.textView3);
-        txtview.setText("Hier können Sie Ihr Vote für das Unterprojekt abgeben!");
+        txtview.setText("Hier können sie abstimmen!"); // Hier können Sie Ihr Vote für das Unterprojekt abgeben!
 
         // für ein Unterprojekt voten
         Button button = (Button) view.findViewById(R.id.vote_button);
