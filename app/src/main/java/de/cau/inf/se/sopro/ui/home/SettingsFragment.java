@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -27,7 +28,7 @@ public class SettingsFragment extends Fragment {
     //private FragmentHomeBinding binding;
     private NavController navController;
 
-    Button button_settings;
+    ImageButton button_settings;
     Button button_apply;
     EditText url;
     TextView success;
