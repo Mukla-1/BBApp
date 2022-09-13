@@ -37,7 +37,9 @@ public class ApiViewModel extends ViewModel {
     private static String username;
     private String currentURL;
 
-    private SharedPreferences sharedPreferences;
+    // shared preferences file to save URL persistent, static so that it can be set once in the settings fragment and is maintained in all instances of ApiViewModels
+    private static SharedPreferences sharedPreferences;
+
     private RequestHandler requestHandler;
 
     // Mutable LiveData objects that will be observed
@@ -75,15 +77,10 @@ public class ApiViewModel extends ViewModel {
      *
      */
     @Inject
-    public ApiViewModel( RequestHandler requestHandler) {
-        /*
-        An activity is NOT injected.
-        // set context to activities context
-        sharedPreferences = activity.getSharedPreferences("persistentPrefs", Context.MODE_PRIVATE);
-        // set the current URL to the one that is persistently saved or the default URL
-        currentURL = sharedPreferences.getString("baseURL", String.valueOf(R.string.defaultURL));
-        */
+    public ApiViewModel(RequestHandler requestHandler) {
         this.requestHandler = requestHandler;
+        // if shared preferences were set before, read the persistent URL
+
     }
 
     /**
@@ -92,10 +89,12 @@ public class ApiViewModel extends ViewModel {
      * @param url the URL to safe
      */
     private void saveURLPersistent(String url) {
-        // create an editor to write data into sharedPreferences for persistent saving
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString("baseURL", url);
-        editor.apply();
+        if (sharedPreferences != null) {
+            // create an editor to write data into sharedPreferences for persistent saving
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.putString("baseURL", url);
+            editor.apply();
+        }
     }
 
     /**
@@ -280,6 +279,10 @@ public class ApiViewModel extends ViewModel {
 
     public static void setUsername(String username) {
         ApiViewModel.username = username;
+    }
+
+    public static void setSharedPreferences(SharedPreferences sharedPreferences) {
+        ApiViewModel.sharedPreferences = sharedPreferences;
     }
 
     public String getCurrentURL() {
