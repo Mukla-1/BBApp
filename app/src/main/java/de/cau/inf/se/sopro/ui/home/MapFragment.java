@@ -116,14 +116,14 @@ public class MapFragment extends Fragment {
             button_back.setClickable(false);
             button_back.setVisibility(View.INVISIBLE);
 
+            view2.findViewById(R.id.empty_image).setOnTouchListener((v, event) -> {
+                view2.getParent().requestDisallowInterceptTouchEvent(true);
+                return view2.onTouchEvent(event);
+            });
 
         }
 
-        view2.findViewById(R.id.empty_image).setOnTouchListener((v, event) -> {
-            Log.v("rush b","FUCK MY LIFE. WHY IST THIS WORKING !?!?!111");
-            view2.getParent().requestDisallowInterceptTouchEvent(true);
-            return view2.onTouchEvent(event);
-        });
+
 
 
 
