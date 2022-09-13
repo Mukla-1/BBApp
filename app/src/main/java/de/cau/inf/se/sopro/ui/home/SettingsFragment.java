@@ -87,6 +87,8 @@ public class SettingsFragment extends Fragment {
             // Display Success or Failure message
             if(flag){
                 success.setText("Neue URL wird benutzt.");
+                // set new url in the view model, where it is saved persistently
+                dashboardViewModel.setCurrentURL(newRL);
             }
             else{
                 success.setText("URL funktioniert nicht.");
