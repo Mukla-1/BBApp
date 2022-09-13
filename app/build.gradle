@@ -99,6 +99,9 @@ dependencies {
     implementation "com.github.lisawray.groupie:groupie-viewbinding:2.8.0"
     implementation "com.github.lisawray.groupie:groupie-kotlin-android-extensions:2.8.0"
 
+    // Soup for Converting html to plaintext
+    implementation 'org.jsoup:jsoup:1.11.3'
+
 
     testImplementation 'junit:junit:4.13.2'
 

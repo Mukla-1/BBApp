@@ -16,6 +16,7 @@ import androidx.navigation.fragment.NavHostFragment;
 
 import com.bumptech.glide.Glide;
 
+import org.jsoup.Jsoup;
 import org.osmdroid.util.GeoPoint;
 
 import dagger.hilt.android.AndroidEntryPoint;
@@ -64,8 +65,6 @@ public class SubprojectOverviewFragment extends Fragment {
 
 
 
-
-
         //für Nachricht an Benutzer, dass Vote abgegeben wurde
         final TextView txtview = view.findViewById(R.id.textView3);
         txtview.setText("Hier können Sie Ihr Vote für das Unterprojekt abgeben!");
@@ -107,7 +106,10 @@ public class SubprojectOverviewFragment extends Fragment {
     private void upDateSubbi() {
         //Beschriftung einfügen
         final TextView txtview2 = view.findViewById(R.id.textView2);
-        txtview2.setText(subbi.getSubprojectDescription());
+        // Convert HTML to plaintext
+        String html = subbi.getSubprojectDescription();
+        String plain = Jsoup.parse(html).wholeText();
+        txtview2.setText(plain);
 
 
         // Subprojekttitel einfügen
