@@ -18,8 +18,13 @@ import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
+import java.util.HashMap;
+import java.util.List;
+
 import dagger.hilt.android.AndroidEntryPoint;
 import de.cau.inf.se.sopro.databinding.ActivityMainBinding;
+import de.cau.inf.se.sopro.model.GroupBaseInfoItem;
+import de.cau.inf.se.sopro.model.HeadingBaseInfoItem;
 import de.cau.inf.se.sopro.ui.projectoverview.ProjectOverviewFragment;
 
 @AndroidEntryPoint
@@ -43,6 +48,7 @@ public class MainActivity extends AppCompatActivity {
 
         Activity actimel = this;
 
+
         // get to projectList from everywhere
         Button toolButtonHome = findViewById(R.id.homeButton);
         toolButtonHome.setOnClickListener(new View.OnClickListener() {
@@ -63,7 +69,10 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-    }
+
+        }
+
+
 
 
 
