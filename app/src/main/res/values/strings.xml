@@ -17,7 +17,7 @@
     <string name="default_subproject_description">Tolles Projekt!!</string>
     <string name="default_subproject_label">Unterprojekt</string>
     <string name="vote">Vote jetzt!</string>
-    <string name="defaultURL">"134.245.1.240"</string>
+    <string name="defaultURL">"http://134.245.1.240:1502"</string>
 
     <string name="login_error_message">"Nutzername und Passwort stimmen nicht überein."</string>
     <string name="register_error_message">"Dieser Nutzername ist leider schon vergeben."</string>

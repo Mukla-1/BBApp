@@ -5,6 +5,7 @@ import android.util.Log;
 import androidx.lifecycle.MutableLiveData;
 
 
+import org.w3c.dom.Comment;
 
 import java.util.HashMap;
 import java.util.List;
@@ -32,6 +33,7 @@ public class RequestHandler {
 
     private final WebService webService;
     HashMap<GroupBaseInfoItem, List<HeadingBaseInfoItem>> hmap = new HashMap<>();
+    HashMap<CommentInfoItem, List<CommentInfoItem>> hmapComments = new HashMap<>();
 
     @Inject
     public RequestHandler(WebService webService) {
@@ -113,6 +115,60 @@ public class RequestHandler {
         });
 
     }
+
+    /**
+     * Updates the map of all comments and their subcomments.
+     * @param chm : The LiveData map containing the (comment, subcomment)-Pairs.
+     * @param subprojectID : ID of a subproject.
+     * @param username: username
+     */
+    public void updateCommentMap(MutableLiveData<HashMap<CommentInfoItem, List<CommentInfoItem>>> chm, Long subprojectID
+    , String username){
+        hmapComments.clear();
+        getComments(subprojectID, username).enqueue(new Callback<List<CommentInfoItem>>() {
+            @Override
+            public void onResponse(Call<List<CommentInfoItem>> call, Response<List<CommentInfoItem>> response) {
+                if (response.isSuccessful()) {
+                    //System.out.println("Anfrage kam durch");
+                    //Get all first-level comments as a list
+                    List<CommentInfoItem> commentList = response.body();
+                    /*
+                    Iterate over all first-level comments to make a separate call
+                    for each group to get their headings.
+                     */
+                    for(CommentInfoItem c: commentList){
+                        getSubcomments(c.getCommentID(), username).enqueue(new Callback<List<CommentInfoItem>>() {
+                            @Override
+                            public void onResponse(Call<List<CommentInfoItem>> call2, Response<List<CommentInfoItem>> response2) {
+                                if (response2.isSuccessful()) {
+                                    //Get the subcomments of a comment
+                                    List<CommentInfoItem> subcommentsList = response2.body();
+                                    /*for(HeadingBaseInfoItem hb:headingsList){
+                                        System.out.println(hb.getHeadingName());
+                                    }*/
+                                    //Add (Comment, Subcomments) to the map
+                                    hmapComments.put(c, subcommentsList);
+                                    //ATTENTION, this causes the ghm to update very often, but currently
+                                    //I have no better solution.
+                                    chm.setValue(hmapComments);
+
+                                }
+                            }
+                            @Override
+                            public void onFailure(Call<List<CommentInfoItem>> call, Throwable t) {
+                                Log.e("SoPro", "Could not reach backend", t);
+                            }
+                        });
+                    }
+                }
+            }
+            @Override
+            public void onFailure(Call<List<CommentInfoItem>> call, Throwable t) {
+                Log.e("SoPro", "Could not reach backend", t);
+            }
+        });
+    }
+
 
     /**
      * Note that all objects are returned as a Call, thus the need for LiveData updating.

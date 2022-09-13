@@ -33,11 +33,12 @@ import de.cau.inf.se.sopro.network.RequestHandler;
 @HiltViewModel
 public class ApiViewModel extends ViewModel {
 
-    // static so that each instance of ApiViewModel has the name saved once it is set via login
+    // static so that each instance of ApiViewModel has the data saved once it is set via login
     private static String username;
-    private String currentURL;
+    private static String currentURL;
 
-    // shared preferences file to save URL persistent, static so that it can be set once in the settings fragment and is maintained in all instances of ApiViewModels
+    // shared preferences file to save URL persistent, static so that it can be set once
+    // in the settings fragment and is maintained in all instances of ApiViewModels
     private static SharedPreferences sharedPreferences;
 
     private RequestHandler requestHandler;
@@ -61,6 +62,9 @@ public class ApiViewModel extends ViewModel {
     //To save the mapping between a Group ID and the subs, the HeadingBaseInfoItems.
     private final MutableLiveData<HashMap<GroupBaseInfoItem, List<HeadingBaseInfoItem>>> _groupHeadingMap = new MutableLiveData<>();
 
+    //To save the mapping between a comment and their subcomments.
+    private final MutableLiveData<HashMap<CommentInfoItem, List<CommentInfoItem>>> _commentSubcommentsMap = new MutableLiveData<>();
+
     /**
      * Updates the LiveData containing (Group, Headings) pairs.
      * @param projectID
@@ -68,6 +72,17 @@ public class ApiViewModel extends ViewModel {
     public void getGroupWithHeadings(Long projectID){
         _groupHeadingMap.setValue(new HashMap<GroupBaseInfoItem, List<HeadingBaseInfoItem>>());
         requestHandler.updateGroupHeadingMap(_groupHeadingMap, projectID);
+
+    }
+
+    /**
+     * Updates the LiveData containing (Comment, Subcomment) pairs.
+     * @param subprojectID
+     * @param username
+     */
+    public void getCommentsWithSubcomments(Long subprojectID, String username){
+        _commentSubcommentsMap.setValue(new HashMap<CommentInfoItem, List<CommentInfoItem>>());
+        requestHandler.updateCommentMap(_commentSubcommentsMap, subprojectID, username);
 
     }
 
@@ -290,7 +305,7 @@ public class ApiViewModel extends ViewModel {
     }
 
     public void setCurrentURL(String newURL) {
-        currentURL = newURL;
+        ApiViewModel.currentURL = newURL;
         // also save persistent
         saveURLPersistent(newURL);
     }
@@ -352,4 +367,8 @@ public class ApiViewModel extends ViewModel {
     }
 
     public MutableLiveData<HashMap<GroupBaseInfoItem, List<HeadingBaseInfoItem>>> get_groupHeadingMap() {return _groupHeadingMap;}
+
+    public MutableLiveData<HashMap<CommentInfoItem, List<CommentInfoItem>>> get_commentSubcommentsMap() {
+        return _commentSubcommentsMap;
+    }
 }
