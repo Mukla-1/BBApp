@@ -18,6 +18,7 @@ public class GroupGroupieItem extends Item<GroupieViewHolder> implements Expanda
 
     private ExpandableGroup eg;
     private GroupBaseInfoItem gb;
+
     public GroupGroupieItem(GroupBaseInfoItem gb){
         this.gb = gb;
     }

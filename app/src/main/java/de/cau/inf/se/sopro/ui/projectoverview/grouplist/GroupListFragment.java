@@ -94,7 +94,4 @@ public class GroupListFragment extends Fragment {
         binding = null;
     }
 
-    private void clearGroupAdapter(GroupAdapter<GroupieViewHolder> ga){
-
-    }
 }
