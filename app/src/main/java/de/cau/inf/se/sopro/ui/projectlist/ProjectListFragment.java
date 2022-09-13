@@ -29,6 +29,7 @@ import de.cau.inf.se.sopro.databinding.FragmentProjectListBinding;
 public class ProjectListFragment extends Fragment implements ProjectAdapter.ListItemClickListener {
     private NavController navController;
     private FragmentProjectListBinding binding;
+    int i = 0;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
@@ -66,6 +67,17 @@ public class ProjectListFragment extends Fragment implements ProjectAdapter.List
         NavHostFragment navHostFragment =
                 (NavHostFragment) getActivity().getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment_activity_main);
         this.navController = navHostFragment.getNavController();
+
+        //FOR TEST PURPOSES ONLY; DELETE AFTERWARDS
+        requestViewModel.getCommentsWithSubcomments(Long.valueOf(153), "admin");
+        requestViewModel.get_commentSubcommentsMap().observe(getViewLifecycleOwner(), mappi ->{
+                    mappi.forEach((k,v) -> {
+                        System.out.println(i + " " + k.getCommentID() + " " + v);
+
+                    });
+                    i++;
+                }
+        );
 
 
         return root;

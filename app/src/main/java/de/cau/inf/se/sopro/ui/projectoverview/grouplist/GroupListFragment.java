@@ -80,9 +80,9 @@ public class GroupListFragment extends Fragment {
                 }
                 ga.add(eg);
             });
-            apiViewModel.get_groupHeadingMap().getValue().forEach((k,v) -> {
+          /*  apiViewModel.get_groupHeadingMap().getValue().forEach((k,v) -> {
                 System.out.println(k.getGroupName() + " " + v);
-            });
+            });*/
         });
 
         return root;
