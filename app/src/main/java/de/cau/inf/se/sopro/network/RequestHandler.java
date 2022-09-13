@@ -68,13 +68,13 @@ public class RequestHandler {
      * @param ghm : The LiveData map containing the (group, headings)-Pairs.
      * @param projectID : ID of a project.
      */
-    public void updateGroupHeadingMap(MutableLiveData<HashMap<GroupBaseInfoItem, List<HeadingBaseInfoItem>>> ghm, Long projectID){
+    public void updateGroupHeadingMap(MutableLiveData<HashMap<GroupBaseInfoItem, List<HeadingBaseInfoItem>>> ghm,
+                                      Long projectID){
         hmap.clear();
         getGroups(projectID).enqueue(new Callback<List<GroupBaseInfoItem>>() {
             @Override
             public void onResponse(Call<List<GroupBaseInfoItem>> call, Response<List<GroupBaseInfoItem>> response) {
                 if (response.isSuccessful()) {
-                    //System.out.println("Anfrage kam durch");
                     //Get all groups as a list.
                     List<GroupBaseInfoItem> groupList = response.body();
                     /*
@@ -83,9 +83,9 @@ public class RequestHandler {
                     for(GroupBaseInfoItem g: groupList){
                         getHeadings(g.getGroupID()).enqueue(new Callback<List<HeadingBaseInfoItem>>() {
                             @Override
-                            public void onResponse(Call<List<HeadingBaseInfoItem>> call2, Response<List<HeadingBaseInfoItem>> response2) {
+                            public void onResponse(Call<List<HeadingBaseInfoItem>> call2,
+                                                   Response<List<HeadingBaseInfoItem>> response2) {
                                 if (response2.isSuccessful()) {
-                                    //System.out.println("Unteranfrage kam auch durch");
                                     //Get the headings of one groups
                                     List<HeadingBaseInfoItem> headingsList = response2.body();
                                     /*for(HeadingBaseInfoItem hb:headingsList){
@@ -96,9 +96,7 @@ public class RequestHandler {
                                     //ATTENTION, this causes the ghm to update very often, but currently
                                     //I have no better solution.
                                     ghm.setValue(hmap);
-
-
-                                                                    }
+                                                                                                        }
                             }
                             @Override
                             public void onFailure(Call<List<HeadingBaseInfoItem>> call, Throwable t) {

@@ -30,7 +30,6 @@ public class GroupGroupieItem extends Item<GroupieViewHolder> implements Expanda
         tv.setTextColor(-16777216);
         tv.setText(gb.getGroupName());
         viewHolder.itemView.setOnLongClickListener(new View.OnLongClickListener(){
-
             @Override
             public boolean onLongClick(View view) {
                 eg.onToggleExpanded();
@@ -38,7 +37,6 @@ public class GroupGroupieItem extends Item<GroupieViewHolder> implements Expanda
             }
         });
     }
-
     @Override
     public int getLayout() {
         return R.layout.sample_layout;

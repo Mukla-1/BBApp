@@ -146,7 +146,8 @@ public class ApiViewModel extends ViewModel {
      * a list of {@link ProjectBaseInfoItem}s, one for each existing project
      */
     public void getProjects() {
-        requestHandler.updateLiveData(_projects, requestHandler.getProjects());
+        requestHandler.updateLiveData(_projects,
+                requestHandler.getProjects());
     }
 
     /**

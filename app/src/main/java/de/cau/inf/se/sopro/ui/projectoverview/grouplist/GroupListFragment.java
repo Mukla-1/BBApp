@@ -64,9 +64,8 @@ public class GroupListFragment extends Fragment {
         rv.setHasFixedSize(true);
         rv.setAdapter(ga);
 
+        //Make the HTTP-call necessary to get the groups with their headings.
         apiViewModel.getGroupWithHeadings(projectID);
-
-
         apiViewModel.get_groupHeadingMap().observe(getViewLifecycleOwner(), pairs->{
             ga.clear();
             //ga.onDataSetInvalidated();
