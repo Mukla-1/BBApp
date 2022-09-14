@@ -89,9 +89,7 @@ public class CommentingFragment extends Fragment {
         // Send the Comment
         dashboardViewModel.createComment(subprojectID,commentID,txt);
     }
-
     protected void onCommentingSucc(boolean succ){
-        Log.v("E","Okay das klapp schonmal " + commentID );
         // Refresh if success
         if(succ){
             // Clear Textbox and change default text
@@ -101,7 +99,6 @@ public class CommentingFragment extends Fragment {
             Bundle payload = new Bundle();
             payload.putLong("subprojectID",subprojectID);
             navController.navigate(R.id.navigation_subproject_overview,payload);
-
         }else{
             text_comment.setText("");
             text_comment.setHint("Bei der Erstellung des Kommentars trat ein Fehler auf. Schreib alles nochmal!");
