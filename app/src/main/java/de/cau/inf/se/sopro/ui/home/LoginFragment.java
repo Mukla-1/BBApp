@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -38,7 +39,7 @@ public class LoginFragment extends Fragment {
     EditText text_username;
     EditText text_password;
     TextView text_hint;
-    Button button_settings;
+    ImageButton button_settings;
 
     private String un = "";
     private String pw = "";
@@ -51,7 +52,6 @@ public class LoginFragment extends Fragment {
                              ViewGroup container, Bundle savedInstanceState) {
         // I used this way of inflating because it actually works
         View view2 = inflater.inflate(R.layout.fragment_login,container,false);
-
         // Api stuff setup
         dashboardViewModel = new ViewModelProvider(this).get(ApiViewModel.class);
         // on first create, set shared preferences in the ApiViewModel

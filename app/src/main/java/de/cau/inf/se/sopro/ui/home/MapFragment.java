@@ -44,7 +44,6 @@ public class MapFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-
         // Connect to the Nav Controller
         NavHostFragment navHostFragment =
                 (NavHostFragment) getActivity().getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment_activity_main);
@@ -53,7 +52,6 @@ public class MapFragment extends Fragment {
         //load/initialize the osmdroid configuration, this can be done
         Context ctx = ((MainActivity)getActivity()).getApplicationContext();
         Configuration.getInstance().load(ctx, PreferenceManager.getDefaultSharedPreferences(ctx));
-
         // This is necessary to....set Relevant User Agent i think...programming is hard man
         Configuration.getInstance().setUserAgentValue(BuildConfig.APPLICATION_ID);
         //setting this before the layout is inflated is a good idea
@@ -65,7 +63,6 @@ public class MapFragment extends Fragment {
         //inflate and create the map
         //setContentView(R.layout.activity_main);
         View view2 = inflater.inflate(R.layout.fragment_map,container,false);
-
         button_back = view2.findViewById(R.id.button_back);
         button_back.setOnClickListener(view -> onReturnButtonClicked());
 
