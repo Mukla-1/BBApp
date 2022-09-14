@@ -94,8 +94,6 @@ public class ApiViewModel extends ViewModel {
     @Inject
     public ApiViewModel(RequestHandler requestHandler) {
         this.requestHandler = requestHandler;
-        // if shared preferences were set before, read the persistent URL
-
     }
 
     /**
