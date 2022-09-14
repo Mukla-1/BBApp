@@ -134,7 +134,7 @@ public class SubprojectOverviewFragment extends Fragment {
         Glide.with(this).load(subbi.getSubprojectPictureURL()).into(view2);
 
         //map at the bottom
-        MapFragment frg = (MapFragment) getChildFragmentManager().findFragmentById(R.id.map_in_spov);
+        MapFragment frg = (MapFragment) getChildFragmentManager().findFragmentById(R.id.map_in_subproject_overview);
         frg.setUp(17, new GeoPoint(subbi.getSubprojectGeoData().getLatitude(), subbi.getSubprojectGeoData().getLongitude()), new de.cau.inf.se.sopro.model.GeoData[]{subbi.getSubprojectGeoData()});
 
 
