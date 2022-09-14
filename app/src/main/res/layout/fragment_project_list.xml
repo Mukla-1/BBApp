@@ -26,8 +26,8 @@
 
     <ImageView
         android:id="@+id/project_list_image_icon"
-        android:layout_width="377dp"
-        android:layout_height="377dp"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
         android:layout_marginTop="80dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

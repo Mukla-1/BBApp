@@ -93,6 +93,7 @@
 
 
     <Button
+        android:backgroundTint="@color/teal_200"
         android:id="@+id/button_apply"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

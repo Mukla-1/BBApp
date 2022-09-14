@@ -78,6 +78,7 @@ public class GroupListFragment extends Fragment {
                     eg.add(new HeadingGroupieItem(h, navController));
                 }
                 ga.add(eg);
+                eg.setExpanded(true);
             });
           /*  apiViewModel.get_groupHeadingMap().getValue().forEach((k,v) -> {
                 System.out.println(k.getGroupName() + " " + v);
