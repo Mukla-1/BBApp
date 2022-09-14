@@ -104,8 +104,17 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
-
-
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/comment_section"
+            android:name="de.cau.inf.se.sopro.ui.comments.CommentSectionFragment"
+            android:layout_width="match_parent"
+            android:layout_height="800dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="50dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
