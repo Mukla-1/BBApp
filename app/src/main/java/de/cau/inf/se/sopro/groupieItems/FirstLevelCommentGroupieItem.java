@@ -76,8 +76,17 @@ public class FirstLevelCommentGroupieItem extends Item<GroupieViewHolder> implem
         tvLikes.setText(String.valueOf(cii.getCommentLikes()));
         tvDislikes.setText(String.valueOf(cii.getCommentDislikes()));
 
+        //Create the button listeners.
+        reply.setOnClickListener( b -> {
+            
+        });
+
+        //Long click expands the group.
+        viewHolder.itemView.setOnLongClickListener(new View.OnLongClickListener(){
+
         // Create button listener for upvote button
         upvoteBtn.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View view) {
                 // initialize required variables
