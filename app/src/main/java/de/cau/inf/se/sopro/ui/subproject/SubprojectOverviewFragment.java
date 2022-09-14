@@ -66,7 +66,7 @@ public class SubprojectOverviewFragment extends Fragment {
 
 
         //für Nachricht an Benutzer, dass Vote abgegeben wurde
-        final TextView txtview = view.findViewById(R.id.textView3);
+        final TextView txtview = view.findViewById(R.id.vote_text);
         txtview.setText("Hier können sie abstimmen!"); // Hier können Sie Ihr Vote für das Unterprojekt abgeben!
 
         // für ein Unterprojekt voten
@@ -98,14 +98,14 @@ public class SubprojectOverviewFragment extends Fragment {
     }
 
     private void updateText(String txt){
-        final TextView txtview = view.findViewById(R.id.textView3);
+        final TextView txtview = view.findViewById(R.id.vote_text);
         txtview.setText(txt);
 
     }
 
     private void upDateSubbi() {
         //Beschriftung einfügen
-        final TextView txtview2 = view.findViewById(R.id.textView2);
+        final TextView txtview2 = view.findViewById(R.id.subproject_description);
         // Convert HTML to plaintext
         String html = subbi.getSubprojectDescription();
         String plain = Jsoup.parse(html).wholeText();

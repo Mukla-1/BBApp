@@ -6,7 +6,6 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.navigation.NavController;
-import androidx.navigation.fragment.NavHostFragment;
 
 
 import com.xwray.groupie.GroupieViewHolder;
@@ -27,7 +26,7 @@ public class HeadingGroupieItem extends Item<GroupieViewHolder> {
     }
     @Override
     public void bind(@NonNull GroupieViewHolder viewHolder, int position) {
-        TextView tv = viewHolder.itemView.findViewById(R.id.textView2);
+        TextView tv = viewHolder.itemView.findViewById(R.id.subproject_description);
         tv.setTextSize(20);
         tv.setText(hi.getHeadingName());
 

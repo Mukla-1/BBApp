@@ -25,7 +25,7 @@ public class GroupGroupieItem extends Item<GroupieViewHolder> implements Expanda
 
     @Override
     public void bind(@NonNull GroupieViewHolder viewHolder, int position) {
-        TextView tv = viewHolder.itemView.findViewById(R.id.textView2);
+        TextView tv = viewHolder.itemView.findViewById(R.id.subproject_description);
         tv.setTextSize(40);
         tv.setTextColor(-16777216);
         tv.setText(gb.getGroupName());
