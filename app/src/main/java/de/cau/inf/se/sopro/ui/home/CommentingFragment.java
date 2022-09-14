@@ -41,6 +41,7 @@ public class CommentingFragment extends Fragment {
     private NavController navController;
     Button button_send;
     EditText text_comment;
+    TextView rply;
 
     Long subprojectID;
     Long commentID;
@@ -62,6 +63,10 @@ public class CommentingFragment extends Fragment {
         button_send = view2.findViewById(R.id.button_send);
         button_send.setOnClickListener(view -> onSendButtonClicked());
         text_comment = view2.findViewById(R.id.text_comment_send);
+        rply = view2.findViewById(R.id.reply_text);
+
+        // setup click listener
+        rply.setOnClickListener( b -> onReplyTextClicked());
 
         // Get Important Information from the Bundle
         Bundle b = getArguments();
@@ -77,6 +82,21 @@ public class CommentingFragment extends Fragment {
         return view2;
 
     }
+
+    protected  void onReplyTextClicked() {
+        if (!rply.getText().toString().isEmpty()){
+            // Reset text
+            rply.setText("");
+            // Reset Var
+            commentID = 0L;
+        }
+    }
+
+    public void setReplyComment(String author,Long id){
+        rply.setText("Auf " + author+" antworten X");
+        commentID = id;
+    }
+
     // Return to the specified Fragment
     protected void onSendButtonClicked(){
         // Get Text

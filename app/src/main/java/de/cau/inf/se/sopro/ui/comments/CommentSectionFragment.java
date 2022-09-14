@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import com.xwray.groupie.ExpandableGroup;
 import com.xwray.groupie.GroupAdapter;
@@ -34,6 +35,7 @@ public class CommentSectionFragment extends Fragment {
     private FragmentCommentSectionBinding binding;
     private RecyclerView rv;
     private ApiViewModel apiViewModel;
+    private CommentingFragment cmmt;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -74,14 +76,20 @@ public class CommentSectionFragment extends Fragment {
         });
 
         // Setup the Commenting Fragment
-        CommentingFragment cmmt = (CommentingFragment) getChildFragmentManager().findFragmentById(R.id.subproject_commenting);
+        cmmt = (CommentingFragment) getChildFragmentManager().findFragmentById(R.id.subproject_commenting);
         Bundle b = new Bundle();
         b.putLong("subprojectID",getArguments().getLong("subprojectID"));
         cmmt.setArguments(b);
 
+
         // Inflate the layout for this fragment
         return root;
     }
+
+    public void setUpReply(String author,Long id){
+        cmmt.setReplyComment(author, id);
+    }
+
 
     @Override
     public void onDestroyView() {
