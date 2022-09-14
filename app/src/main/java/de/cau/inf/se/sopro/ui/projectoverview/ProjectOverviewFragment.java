@@ -66,26 +66,6 @@ public class ProjectOverviewFragment extends Fragment {
         View root = binding.getRoot();
 
 
-        // TODO: nachher wieder entfernen WICHTIG!!!11!!1
-
-
-    /*
->>>>>>> Stashed changes
-        binding.tempButton.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View view) {
-
-                Bundle payload = new Bundle();
-                payload.putLong("headingID",11);
-                payload.putString("headingName", " Hallo, Mads hier :D");
-                NavHostFragment.findNavController(ProjectOverviewFragment.this)
-                        .navigate(R.id.action_project_overview_to_subproject_list,payload);
-            }
-        });
-*/
-        // TODO: nachher wieder entfernen WICHTIG!!!11!!1
-
         // TODO: Sehr Nötig
         Fragment frag = (Fragment) getChildFragmentManager().findFragmentById(R.id.group_list_fragment_container_view);
         Bundle payload = new Bundle();
