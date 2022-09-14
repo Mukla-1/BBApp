@@ -84,6 +84,7 @@ public class FirstLevelCommentGroupieItem extends Item<GroupieViewHolder> implem
             });
         }
 
+
         // Create button listener for upvote button
         upvoteBtn.setOnClickListener(new View.OnClickListener() {
 
