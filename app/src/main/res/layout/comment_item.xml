@@ -42,9 +42,7 @@
         android:layout_height="50dp"
         android:src="@drawable/ic_thumbs_up"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/amount_likes"
-        app:layout_constraintHorizontal_bias="0.59"
-        app:layout_constraintStart_toEndOf="@id/reply_button"
+        app:layout_constraintEnd_toStartOf="@+id/amount_likes"
         app:layout_constraintTop_toBottomOf="@id/comment_text"
         app:layout_constraintVertical_bias="0.0"
         tools:src="@drawable/ic_thumbs_up" />
@@ -54,57 +52,45 @@
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:src="@drawable/ic_thumbs_down"
-        tools:src="@drawable/ic_thumbs_down"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.8"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/amount_dislikes"
         app:layout_constraintTop_toBottomOf="@id/comment_text"
         app:layout_constraintVertical_bias="0.0"
-        />
+        tools:src="@drawable/ic_thumbs_down" />
 
     <TextView
         android:id="@+id/amount_likes"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="0dp"
-        android:layout_marginLeft="0dp"
         android:text="10"
         android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/downvoteButton"
-        app:layout_constraintStart_toEndOf="@id/upvoteButton"
+        app:layout_constraintEnd_toStartOf="@+id/downvoteButton"
         app:layout_constraintTop_toBottomOf="@+id/comment_text"
-        app:layout_constraintVertical_bias="0.5"
-        app:layout_constraintHorizontal_bias="0.5"/>
+        app:layout_constraintVertical_bias="0.5" />
 
     <TextView
         android:id="@+id/amount_dislikes"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="0dp"
-        android:layout_marginLeft="0dp"
         android:text="12"
         android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/downvoteButton"
         app:layout_constraintTop_toBottomOf="@+id/comment_text"
-        app:layout_constraintVertical_bias="0.5"
-        app:layout_constraintHorizontal_bias="0.4"/>
+        app:layout_constraintVertical_bias="0.5" />
 
     <Button
         android:id="@+id/reply_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Reply"
         android:backgroundTint="@color/teal_200"
+        android:text="Reply"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/comment_text"
-        app:layout_constraintStart_toEndOf="@id/comment_author"
-        app:layout_constraintEnd_toStartOf="@id/upvoteButton"
-        app:layout_constraintHorizontal_bias="1"
-         />
+        app:layout_constraintEnd_toStartOf="@+id/upvoteButton"
+        app:layout_constraintHorizontal_bias="0.8"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/comment_text" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
