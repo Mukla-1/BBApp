@@ -81,9 +81,6 @@ public class FirstLevelCommentGroupieItem extends Item<GroupieViewHolder> implem
             
         });
 
-        //Long click expands the group.
-        viewHolder.itemView.setOnLongClickListener(new View.OnLongClickListener(){
-
         // Create button listener for upvote button
         upvoteBtn.setOnClickListener(new View.OnClickListener() {
 
