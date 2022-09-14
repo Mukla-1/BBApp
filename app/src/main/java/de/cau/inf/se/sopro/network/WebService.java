@@ -86,7 +86,7 @@ public interface WebService {
                                        @Path("commentID")Long commentID, @Path("content")String content, @Path("userID")String username);
 
     @POST("/app/voteComment/{commentID}/{userID}/{upVote}")
-    public Call<Boolean> voteComment(@Path("commentID")Long commentID, @Path("upVote")Boolean upvote, @Path("userID")String username);
+    public Call<Integer> voteComment(@Path("commentID")Long commentID, @Path("upVote")Boolean upvote, @Path("userID")String username);
 
 }
 

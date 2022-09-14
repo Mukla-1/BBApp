@@ -333,7 +333,7 @@ public class RequestHandler {
      * @param upvote {@code true} if the vote is an upvote, {@code false} if it is a downvote
      * @return {@code true} if the voting process worked, {@code false} if there was an error
      */
-    public Call<Boolean> voteComment(Long commentID, Boolean upvote, String username) {
+    public Call<Integer> voteComment(Long commentID, Boolean upvote, String username) {
         return webService.voteComment(commentID, upvote, username);
     }
 }
