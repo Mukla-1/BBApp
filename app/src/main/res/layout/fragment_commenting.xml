@@ -22,11 +22,12 @@
         app:layout_constraintVertical_bias="1.0" />
 
     <Button
+
         android:id="@+id/button_send"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:text="Senden!"
-        android:backgroundTint="#0000FF"
+        android:backgroundTint="@color/teal_200"
         app:layout_constraintEnd_toEndOf="parent"
         tools:layout_editor_absoluteY="16dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>
