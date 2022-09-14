@@ -57,7 +57,7 @@ public class ApiViewModel extends ViewModel {
     private final MutableLiveData<List<CommentInfoItem>> _subcomments = new MutableLiveData<>();
     private final MutableLiveData<Boolean> _subprojectVoteSuccess = new MutableLiveData<>();
     private final MutableLiveData<Boolean> _commentCreationSuccess = new MutableLiveData<>();
-    private final MutableLiveData<Integer> _commentVoteSuccess = new MutableLiveData<>();
+    private final MutableLiveData<Boolean> _commentVoteSuccess = new MutableLiveData<>();
 
     //To save the mapping between a Group ID and the subs, the HeadingBaseInfoItems.
     private final MutableLiveData<HashMap<GroupBaseInfoItem, List<HeadingBaseInfoItem>>> _groupHeadingMap = new MutableLiveData<>();
@@ -283,7 +283,7 @@ public class ApiViewModel extends ViewModel {
      * Instead of a return value, this sets {@link ApiViewModel#_commentVoteSuccess} to
      * {@code true} if the voting process worked, {@code false} if there was an error
      */
-    public void voteComment(Long commentID, Boolean upvote) {
+    public void voteComment(Long commentID, Integer upvote) {
         requestHandler.updateLiveData(_commentVoteSuccess, requestHandler.voteComment(commentID, upvote, username));
     }
 
@@ -363,7 +363,7 @@ public class ApiViewModel extends ViewModel {
         return _commentCreationSuccess;
     }
 
-    public MutableLiveData<Integer> get_commentVoteSuccess() {
+    public MutableLiveData<Boolean> get_commentVoteSuccess() {
         return _commentVoteSuccess;
     }
 
