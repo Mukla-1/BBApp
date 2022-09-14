@@ -52,7 +52,7 @@ public class CommentSectionFragment extends Fragment {
         apiViewModel = new ViewModelProvider(requireActivity()).get(ApiViewModel.class);
         String username = apiViewModel.getUsername();
 
-        apiViewModel.getCommentsWithSubcomments(153L, username);
+        apiViewModel.getCommentsWithSubcomments(getArguments().getLong("subprojectID"), username);
 
         apiViewModel.get_commentSubcommentsMap().observe(getViewLifecycleOwner(), pairs->{
             ga.clear();

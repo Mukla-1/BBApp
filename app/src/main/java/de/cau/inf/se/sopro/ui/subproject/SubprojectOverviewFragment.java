@@ -23,6 +23,7 @@ import dagger.hilt.android.AndroidEntryPoint;
 import de.cau.inf.se.sopro.ApiViewModel;
 import de.cau.inf.se.sopro.R;
 import de.cau.inf.se.sopro.model.SubprojectInfoItem;
+import de.cau.inf.se.sopro.ui.comments.CommentSectionFragment;
 import de.cau.inf.se.sopro.ui.home.MapFragment;
 
 /**
@@ -48,6 +49,13 @@ public class SubprojectOverviewFragment extends Fragment {
         //übergebene subprojectID festigen
         Bundle bundi = this.getArguments();
         id = bundi.getLong("subprojectID");
+
+
+        // Give the commentsection  the ID
+        CommentSectionFragment sec = (CommentSectionFragment) getChildFragmentManager().findFragmentById(R.id.comment_section);
+        Bundle b = new Bundle();
+        b.putLong("subprojectID",id);
+        sec.setArguments(b);
 
         //api für anfragen nach außen
         requestViewModel =
