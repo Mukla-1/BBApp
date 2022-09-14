@@ -61,9 +61,9 @@ public class CommentSectionFragment extends Fragment {
             //For each over the GroupHeadings HashMap.
             pairs.forEach((comment, subcomments)->{
 
-                ExpandableGroup eg = new ExpandableGroup(new FirstLevelCommentGroupieItem(comment));
+                ExpandableGroup eg = new ExpandableGroup(new FirstLevelCommentGroupieItem(comment, this));
                 for(CommentInfoItem sub: subcomments){
-                    eg.add(new SecondLevelCommentGroupieItem(sub));
+                    eg.add(new SecondLevelCommentGroupieItem(sub, this));
                 }
                 ga.add(eg);
             });
