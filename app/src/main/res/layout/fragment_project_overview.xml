@@ -53,10 +53,10 @@
             app:spb_justifyMultilineDescription="true"
             app:spb_maxDescriptionLines="3"
             app:spb_maxStateNumber="five"
-            app:spb_stateBackgroundColor="#BDBDBD"
+            app:spb_stateBackgroundColor="@color/teal_200"
             app:spb_stateDescriptionColor="#808080"
             app:spb_stateDescriptionSize="5dp"
-            app:spb_stateForegroundColor="#0F9D58"
+            app:spb_stateForegroundColor="@color/teal_200"
             app:spb_stateNumberBackgroundColor="#808080"
             app:spb_stateNumberForegroundColor="#eeeeee" />
 
