@@ -26,6 +26,7 @@ import de.cau.inf.se.sopro.groupieItems.HeadingGroupieItem;
 import de.cau.inf.se.sopro.groupieItems.SecondLevelCommentGroupieItem;
 import de.cau.inf.se.sopro.model.CommentInfoItem;
 import de.cau.inf.se.sopro.model.HeadingBaseInfoItem;
+import de.cau.inf.se.sopro.ui.home.CommentingFragment;
 
 @AndroidEntryPoint
 public class CommentSectionFragment extends Fragment {
@@ -52,7 +53,7 @@ public class CommentSectionFragment extends Fragment {
         apiViewModel = new ViewModelProvider(requireActivity()).get(ApiViewModel.class);
         String username = apiViewModel.getUsername();
 
-        apiViewModel.getCommentsWithSubcomments(153L, username);
+        apiViewModel.getCommentsWithSubcomments(getArguments().getLong("subprojectID"), username);
 
         apiViewModel.get_commentSubcommentsMap().observe(getViewLifecycleOwner(), pairs->{
             ga.clear();
@@ -72,6 +73,11 @@ public class CommentSectionFragment extends Fragment {
             });*/
         });
 
+        // Setup the Commenting Fragment
+        CommentingFragment cmmt = (CommentingFragment) getChildFragmentManager().findFragmentById(R.id.subproject_commenting);
+        Bundle b = new Bundle();
+        b.putLong("subprojectID",getArguments().getLong("subprojectID"));
+        cmmt.setArguments(b);
 
         // Inflate the layout for this fragment
         return root;
