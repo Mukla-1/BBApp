@@ -67,6 +67,7 @@ public class CommentSectionFragment extends Fragment {
                     eg.add(new SecondLevelCommentGroupieItem(sub, this));
                 }
                 ga.add(eg);
+                eg.setExpanded(true);
             });
           /*  apiViewModel.get_groupHeadingMap().getValue().forEach((k,v) -> {
                 System.out.println(k.getGroupName() + " " + v);

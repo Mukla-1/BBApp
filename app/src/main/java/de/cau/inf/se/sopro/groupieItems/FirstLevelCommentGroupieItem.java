@@ -23,7 +23,6 @@ public class FirstLevelCommentGroupieItem extends Item<GroupieViewHolder> implem
 
     private CommentInfoItem cii;
     private ExpandableGroup eg;
-
     private Fragment parentFragment;
 
     // ViewModel for request handling
@@ -33,10 +32,13 @@ public class FirstLevelCommentGroupieItem extends Item<GroupieViewHolder> implem
         this.cii = cii;
         this.parentFragment = parentFragment;
         this.apiViewModel = new ViewModelProvider(parentFragment.requireActivity()).get(ApiViewModel.class);
+
     }
 
     @Override
     public void bind(@NonNull GroupieViewHolder viewHolder, int position) {
+
+
 
         //Textual contentholders
         TextView tvContent = viewHolder.itemView.findViewById(R.id.comment_text);
