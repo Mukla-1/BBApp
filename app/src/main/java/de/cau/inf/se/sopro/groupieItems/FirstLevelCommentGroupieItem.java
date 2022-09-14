@@ -18,17 +18,18 @@ import com.xwray.groupie.Item;
 import de.cau.inf.se.sopro.ApiViewModel;
 import de.cau.inf.se.sopro.R;
 import de.cau.inf.se.sopro.model.CommentInfoItem;
+import de.cau.inf.se.sopro.ui.comments.CommentSectionFragment;
 
 public class FirstLevelCommentGroupieItem extends Item<GroupieViewHolder> implements ExpandableItem {
 
     private CommentInfoItem cii;
     private ExpandableGroup eg;
-    private Fragment parentFragment;
+    private CommentSectionFragment parentFragment;
 
     // ViewModel for request handling
     ApiViewModel apiViewModel;
 
-    public FirstLevelCommentGroupieItem(CommentInfoItem cii, Fragment parentFragment){
+    public FirstLevelCommentGroupieItem(CommentInfoItem cii, CommentSectionFragment parentFragment){
         this.cii = cii;
         this.parentFragment = parentFragment;
         this.apiViewModel = new ViewModelProvider(parentFragment.requireActivity()).get(ApiViewModel.class);
@@ -77,12 +78,11 @@ public class FirstLevelCommentGroupieItem extends Item<GroupieViewHolder> implem
         tvDislikes.setText(String.valueOf(cii.getCommentDislikes()));
 
         //Create the button listeners.
-        reply.setOnClickListener( b -> {
-            
-        });
-
-        //Long click expands the group.
-        viewHolder.itemView.setOnLongClickListener(new View.OnLongClickListener(){
+        if(getClass() == FirstLevelCommentGroupieItem.class) {
+            reply.setOnClickListener(b -> {
+                parentFragment.setUpReply(cii.getCommentAuthor(), cii.getCommentID());
+            });
+        }
 
         // Create button listener for upvote button
         upvoteBtn.setOnClickListener(new View.OnClickListener() {

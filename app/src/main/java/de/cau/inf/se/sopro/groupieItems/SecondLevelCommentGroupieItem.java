@@ -15,10 +15,11 @@ import com.xwray.groupie.Item;
 
 import de.cau.inf.se.sopro.R;
 import de.cau.inf.se.sopro.model.CommentInfoItem;
+import de.cau.inf.se.sopro.ui.comments.CommentSectionFragment;
 
 public class SecondLevelCommentGroupieItem extends FirstLevelCommentGroupieItem {
 
-    public SecondLevelCommentGroupieItem(CommentInfoItem cii, Fragment parentFragment) {
+    public SecondLevelCommentGroupieItem(CommentInfoItem cii, CommentSectionFragment parentFragment) {
         super(cii, parentFragment);
     }
 
