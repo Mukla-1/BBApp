@@ -93,8 +93,9 @@ public class CommentingFragment extends Fragment {
     }
 
     public void setReplyComment(String author,Long id){
-        rply.setText("Auf " + author+" antworten X");
+        rply.setText("Antworten auf \n" + author);
         commentID = id;
+        text_comment.requestFocus();
     }
 
     // Return to the specified Fragment

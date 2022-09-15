@@ -11,7 +11,7 @@
         android:layout_width="200dp"
         android:layout_height="match_parent"
         android:ems="10"
-        android:hint="Enter a nice Comment"
+        android:hint="@string/commenting_hint"
         android:inputType="textMultiLine"
         android:maxLength="160"
         android:maxLines="6"
