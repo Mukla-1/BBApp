@@ -70,6 +70,7 @@ public class ProjectListFragment extends Fragment implements ProjectAdapter.List
         ImageView ourIcon = root.findViewById(R.id.project_list_image_icon);
         Glide.with(this).load(url).into(ourIcon);
 
+
         // Connect to the Nav Controller
         NavHostFragment navHostFragment =
                 (NavHostFragment) getActivity().getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment_activity_main);
