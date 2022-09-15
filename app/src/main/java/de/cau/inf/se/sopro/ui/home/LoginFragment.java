@@ -15,6 +15,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
@@ -101,6 +102,7 @@ public class LoginFragment extends Fragment {
 
     public void onRegisterUpdate(Boolean success){
         if(success){
+            ApiViewModel.setUsername(un);
             switchActivity(un,pw);
         }else{
             text_hint.setText(R.string.register_error_message);
