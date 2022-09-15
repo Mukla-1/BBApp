@@ -223,13 +223,15 @@ public class FirstLevelCommentGroupieItem extends Item<GroupieViewHolder> implem
         });
 
 
-        // click expands the group.
-        viewHolder.itemView.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view) {
-                eg.onToggleExpanded();
-            }
-        });
+        // click expands the group. But only if we are First Layer, who wrote this code !?!?
+        if(getClass() == FirstLevelCommentGroupieItem.class) {
+            viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    eg.onToggleExpanded();
+                }
+            });
+        }
     }
 
     @Override
