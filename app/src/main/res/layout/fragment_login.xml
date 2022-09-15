@@ -27,6 +27,7 @@
 
     <EditText
         android:id="@+id/username"
+        android:maxLength="20"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:autofillHints="username"
@@ -47,6 +48,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:autofillHints="password"
+        android:maxLength="20"
         android:ems="15"
         android:hint="Passwort"
         android:imeOptions="actionDone"

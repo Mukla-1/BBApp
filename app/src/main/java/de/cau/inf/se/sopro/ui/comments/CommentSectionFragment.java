@@ -4,6 +4,8 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.NavController;
+import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -89,6 +91,15 @@ public class CommentSectionFragment extends Fragment {
 
     public void setUpReply(String author,Long id){
         cmmt.setReplyComment(author, id);
+    }
+
+    public void navToSelf(Long id){
+        Bundle payload = new Bundle();
+        payload.putLong("subprojectID",id);
+        NavHostFragment navHostFragment =
+                (NavHostFragment) getActivity().getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment_activity_main);
+        NavController navController = navHostFragment.getNavController();
+        navController.navigate(R.id.navigation_subproject_overview,payload);
     }
 
 

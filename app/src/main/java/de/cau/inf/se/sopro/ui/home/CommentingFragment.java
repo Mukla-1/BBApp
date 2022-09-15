@@ -33,6 +33,7 @@ import de.cau.inf.se.sopro.LoginActivity;
 import de.cau.inf.se.sopro.MainActivity;
 import de.cau.inf.se.sopro.R;
 import de.cau.inf.se.sopro.model.GeoData;
+import de.cau.inf.se.sopro.ui.comments.CommentSectionFragment;
 
 @AndroidEntryPoint
 public class CommentingFragment extends Fragment {
@@ -117,9 +118,8 @@ public class CommentingFragment extends Fragment {
             text_comment.setText("");
             text_comment.setHint("Ihr Kommentar wurde hochgeladen");
             // Lad einfach das Fragment neu, updated auch
-            Bundle payload = new Bundle();
-            payload.putLong("subprojectID",subprojectID);
-            navController.navigate(R.id.navigation_subproject_overview,payload);
+            CommentSectionFragment parent = (CommentSectionFragment) getParentFragment();
+            parent.navToSelf(subprojectID);
         }else{
             text_comment.setText("");
             text_comment.setHint("Bei der Erstellung des Kommentars trat ein Fehler auf. Schreib alles nochmal!");
