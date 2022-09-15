@@ -24,6 +24,7 @@
         <entry key="..\:/Users/Chrissi/Desktop/buergerbeteiligungs-app/app/src/main/res/menu/bottom_nav_menu.xml" value="0.22447916666666667" />
         <entry key="..\:/Users/Malte(Mukla)/AndroidStudioProjectGit/buergerbeteiligungs-app/app/src/main/res/layout/activity_login.xml" value="0.27291666666666664" />
         <entry key="..\:/Users/Malte(Mukla)/AndroidStudioProjectGit/buergerbeteiligungs-app/app/src/main/res/layout/activity_main.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Malte(Mukla)/AndroidStudioProjectGit/buergerbeteiligungs-app/app/src/main/res/layout/comment_item.xml" value="0.18297101449275363" />
         <entry key="..\:/Users/Malte(Mukla)/AndroidStudioProjectGit/buergerbeteiligungs-app/app/src/main/res/layout/fragment_comment.xml" value="0.25" />
         <entry key="..\:/Users/Malte(Mukla)/AndroidStudioProjectGit/buergerbeteiligungs-app/app/src/main/res/layout/fragment_commentar_area.xml" value="0.271875" />
         <entry key="..\:/Users/Malte(Mukla)/AndroidStudioProjectGit/buergerbeteiligungs-app/app/src/main/res/layout/fragment_commenting.xml" value="0.27291666666666664" />
@@ -45,16 +46,12 @@
         <entry key="..\:/Users/Malte(Mukla)/AndroidStudioProjectGit/buergerbeteiligungs-app/app/src/main/res/layout/toolbar.xml" value="0.365625" />
         <entry key="..\:/Users/Malte(Mukla)/AndroidStudioProjectGit/buergerbeteiligungs-app/app/src/main/res/menu/bottom_nav_menu.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/madsn/AndroidStudioProjects/buergerbeteiligungs-app/app/src/main/res/layout/activity_main.xml" value="0.18802083333333333" />
-        <entry key="..\:/Users/madsn/AndroidStudioProjects/buergerbeteiligungs-app/app/src/main/res/layout/comment_item.xml" value="0.27717391304347827" />
-        <entry key="..\:/Users/madsn/AndroidStudioProjects/buergerbeteiligungs-app/app/src/main/res/layout/fragment_commenting.xml" value="0.27717391304347827" />
         <entry key="..\:/Users/madsn/AndroidStudioProjects/buergerbeteiligungs-app/app/src/main/res/layout/fragment_database.xml" value="0.358695652173913" />
         <entry key="..\:/Users/madsn/AndroidStudioProjects/buergerbeteiligungs-app/app/src/main/res/layout/fragment_home.xml" value="0.18802083333333333" />
         <entry key="..\:/Users/madsn/AndroidStudioProjects/buergerbeteiligungs-app/app/src/main/res/layout/fragment_project.xml" value="0.358695652173913" />
         <entry key="..\:/Users/madsn/AndroidStudioProjects/buergerbeteiligungs-app/app/src/main/res/layout/fragment_project_list.xml" value="0.358695652173913" />
         <entry key="..\:/Users/madsn/AndroidStudioProjects/buergerbeteiligungs-app/app/src/main/res/layout/fragment_project_list_list.xml" value="0.35260416666666666" />
         <entry key="..\:/Users/madsn/AndroidStudioProjects/buergerbeteiligungs-app/app/src/main/res/layout/fragment_project_overview.xml" value="0.358695652173913" />
-        <entry key="..\:/Users/madsn/AndroidStudioProjects/buergerbeteiligungs-app/app/src/main/res/layout/fragment_subproject_overview.xml" value="0.19972826086956522" />
-        <entry key="..\:/Users/madsn/AndroidStudioProjects/buergerbeteiligungs-app/app/src/main/res/layout/sub_comment_item.xml" value="0.19972826086956522" />
         <entry key="..\:/Users/madsn/AndroidStudioProjects/buergerbeteiligungs-app/app/src/main/res/menu/bottom_nav_menu.xml" value="0.36666666666666664" />
       </map>
     </option>
